@@ -55,7 +55,21 @@ Java 1.8 o superior.
 |  ESPACIOS|    [ \t\n\r]+     |
 
 ### c y d. Gramáticas:
-
+![Diagrama](/ebnfdiagram/l1.jpg )
+![Diagrama](/ebnfdiagram/l2.jpg )
+![Diagrama](/ebnfdiagram/l3.jpg )
+![Diagrama](/ebnfdiagram/l4.jpg )
+![Diagrama](/ebnfdiagram/l5.jpg )
+![Diagrama](/ebnfdiagram/l6.jpg )
+![Diagrama](/ebnfdiagram/l7.jpg )
+![Diagrama](/ebnfdiagram/l8.jpg )
+![Diagrama](/ebnfdiagram/l9.jpg )
+![Diagrama](/ebnfdiagram/l10.jpg )
+![Diagrama](/ebnfdiagram/l11.jpg )
+![Diagrama](/ebnfdiagram/l12.jpg )
+![Diagrama](/ebnfdiagram/l13.jpg )
+![Diagrama](/ebnfdiagram/l14.jpg )
+![Diagrama](/ebnfdiagram/l15.jpg )
 ### e. Fuentes de la aplicación construida:
 
 ### f. Manual de usuario y técnico:

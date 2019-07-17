@@ -3,7 +3,7 @@
 
 ## Propósito
 
-Análisis, diseño e implementación de una herramienta (prototipo) de software que permita realizar combinación de correspondencia a partir de un archivo fuente de información y una plantilla o modelo de documento a generar. El archivo fuente es una tabla (por ejemplo, Excel) cuyas columnas son los campos.
+El proyecto del curso consiste en analizar, diseñar e implementar un (pequeño) prototipo de lenguaje de programación imperativo, construyendo, de esta manera, los dos primeros módulos “Preprocessor” (preprocesador) y “Compiler” (compilador) de un sistema de procesamiento del lenguaje  Al implementar estos dos módulos quedaría completo un sistema de procesamiento de lenguaje para una arquitectura computacional basada en Microprocesador Z80.
 
 ## Integrantes
 

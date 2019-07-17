@@ -98,6 +98,19 @@ El editor de Memoria cuenta con una pequeña tabla la cual permite visualizar y 
 Son soportadas todas las instrucciones principales desde la tabla "ver fuente Tabla de Instrucciones" del z80 00 hasta la FF.
 ##### b. Tipos de variable soportadas: 
 Son soportadas las variable de valor numérico y los vectores también de valor numérico que estén definidos en el dominio de 0 hasta 255.
+``` ejemplo: ./variables.ma```
+```
+programa main{
+  var numero;
+  numero = 3;
+  
+  vec vector 2;
+  vector_1 = 1;
+  vector_2 = 2;
+  
+}
+
+```
 ##### c. Operaciones matemáticas soportadas por el lenguaje implementado: 
 Son soportadas la suma, resta, multiplicación y división de números enteros o variables asociadas a estos.
 ``` ejemplo: ./operaciones.ma```

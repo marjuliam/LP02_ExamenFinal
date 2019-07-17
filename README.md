@@ -1,3 +1,4 @@
+
 # LP02 - EXAMEN FINAL
 
 ## Propósito
@@ -10,16 +11,6 @@ Análisis, diseño e implementación de una herramienta (prototipo) de software 
 |-----------------------|-----------------------------------------------|
 | Luis Alejandro Higuarán Serrano      |    <lahiguarans@unal.edu.co>    |
 | Yesid Alberto Ochoa Luque      |    <yaochoal@unal.edu.co>     |
-
-## Requisitos
-Java 1.8 o superior.
-
-## Instrucciones de ejecución
-1. Abrir el ejecutable Programa/Taller.jar
-2. Seleccionar la plantilla_ejemplo.txt
-3. Seleccionar la tabla_ejemplo.xlsx
-4. Seleccionar una carpeta donde guardar los documentos generados.
-5. Oprimir en Iniciar Programa.
 
 ## Entregables
 
@@ -81,25 +72,48 @@ Java 1.8 o superior.
 ### f. Manual de usuario y técnico:
 
 #### 1. Ventana principal:
-La ventana principal de nuestro Z80 esta principalmente compuesta por la interfaz que muestra la arquitectura interna del Z80 mostrando los valores de sus registros los cuales se actualizan a cada momento que se ejecute un programa previamente cargado, adicionalmente se agregan opciones para reiniciar la CPU y cambiar los ciclos de ejecución para visualizar paso a paso la ejecución del programa o que este se ejecute completamente de principio a fin.
-Tambien contamos con un menu superior el cual nos permite acceder a un editor de codigo el cual explicaremos a continuación.
+La ventana principal de nuestro Z80 esta principalmente compuesta por la interfaz que muestra la arquitectura interna del Z80 mostrando los valores de sus registros los cuales se actualizan a cada momento que se ejecute un programa previamente cargado, adicional mente se agregan opciones para reiniciar la CPU y cambiar los ciclos de ejecución para visualizar paso a paso la ejecución del programa o que este se ejecute completamente de principio a fin.
+También contamos con un menú superior el cual nos permite acceder a un editor de código el cual explicaremos a continuación.
 
 ![Ventana principal](/imgmanual/m1.jpg )
 #### 2. Editor de Código:
-El editor de código cuenta con una pequeña interfaz la cual permite abrir un archivo con extención ".ma" la cual es la que usaremos en el lenguaje diseñado para este proyecto el cual se bautizo como MAFE. Asi mismo se permite visualizarlo y editarlo. 
-Una vez que este terminado el código de nuestro programa se compila oprimiendo el boton de "Compilar" generando el Assembler correspondinete que recibira el Z80, este Assembler debe ser guardado con el boton "Guardar Assembler" en un archivo de extención ".asm" la cual elegimos para identificar nuestros archivos de formato Assembler y posteriormente cargar en nuestro Editor de Assembler.
+El editor de código cuenta con una pequeña interfaz la cual permite abrir un archivo con extensión ".ma" la cual es la que usaremos en el lenguaje diseñado para este proyecto el cual se bautizo como MAFE. Así mismo se permite visualizarlo y editarlo. 
+Una vez que este terminado el código de nuestro programa se compila oprimiendo el boton de "Compilar" generando el Assembler correspondiente que recibirá el Z80, este Assembler debe ser guardado con el botón "Guardar Assembler" en un archivo de extensión ".asm" la cual elegimos para identificar nuestros archivos de formato Assembler y posteriormente cargar en nuestro Editor de Assembler.
 
 ![Editor de codigo](/imgmanual/m2.jpg )
 #### 3. Editor de Assembler:
-El editor de Assembler cuenta con una pequeña interfaz la cual permite abrir el archivos con extención ".asm" que hayamos generado previamente en el editor de código, asi mismo se permite visualizarlo y editarlo, una vez hayamos terminado de editar o verificar que nuestro Assembler es correcto procedemos a generar el codigo re-localizable a nuestro Z80 oprimiendo el boton Assemble y visualizando la dirección de memoria y la instruccion de maquina en la casilla de texto inferior.
+El editor de Assembler cuenta con una pequeña interfaz la cual permite abrir el archivos con extensión ".asm" que hayamos generado previamente en el editor de código, así mismo se permite visualizarlo y editarlo, una vez hayamos terminado de editar o verificar que nuestro Assembler es correcto procedemos a generar el código re-localizable a nuestro Z80 oprimiendo el botón Assemble y visualizando la dirección de memoria y la instrucción de maquina en la casilla de texto inferior.
 
 ![Editor de Assembler](/imgmanual/m3.jpg )
 #### 4. Editor de Memoria y DEBUG:
 
-**Nota: Paso previo: Para visualizar el codigo maquina en el Editor de Memoria se debe haber oprimido previamente el boton "Cargar Assembler" en la ventana principal**
+**Nota: Paso previo: Para visualizar el código maquina en el Editor de Memoria se debe haber oprimido previamente el botón "Cargar Assembler" en la ventana principal**
 
-El editor de Memoria cuenta con una pequeña tabla la cual permite visualizar y editar el codigo relocalizable que hayamos generado previamente en el editor de Assembler,una vez hayamos terminado de editar o verificar que nuestro memoria es correcta procedemos a oprimir el boton de **Ejecutar Programa** en la ventana principal visualizando el debug en el editor de memoria de las instrucciones ejecutadas por el Z80.
+El editor de Memoria cuenta con una pequeña tabla la cual permite visualizar y editar el código re-localizable que hayamos generado previamente en el editor de Assembler,una vez hayamos terminado de editar o verificar que nuestro memoria es correcta procedemos a oprimir el botón de **Ejecutar Programa** en la ventana principal visualizando el DEBUG en el editor de memoria de las instrucciones ejecutadas por el Z80.
 
 ![Editor de Memoria y DEBUG](/imgmanual/m4.jpg )
 
+#### 5. Especificaciones técnicas del Z80 y el Lenguaje Implementado:
+##### a. Z80 instrucciones soportadas: 
+Son soportadas todas las instrucciones principales desde la tabla "ver fuente Tabla de Instrucciones" del z80 00 hasta la FF.
+##### b. Tipos de variable soportadas: 
+Son soportadas las variable de valor numérico y los vectores también de valor numérico que estén definidos en el dominio de 0 hasta 255.
+##### c. Operaciones matemáticas soportadas por el lenguaje implementado: 
+Son soportadas la suma, resta, multiplicación y división de números enteros o variables asociadas a estos.
+##### d. Estructuras de selección soportadas por el lenguaje implementado: 
+Es soportado el if-else  con operaciones boleanas de mayor igual ">=" menor que"<" y la equivalencia lógica"==".
+##### d. Estructuras de control iterativas soportadas por el lenguaje implementado: 
+Es soportado el ciclo for el cual solo puede repetirse un x numero de veces con un contador siempre de valor 1.
+
+
 ### g. Informe ejecutivo, ejemplos:
+
+## Requisitos
+Java 1.8 o superior.
+
+## Instrucciones de ejecución
+1. Abrir el ejecutable Programa/Taller.jar
+2. Seleccionar la plantilla_ejemplo.txt
+3. Seleccionar la tabla_ejemplo.xlsx
+4. Seleccionar una carpeta donde guardar los documentos generados.
+5. Oprimir en Iniciar Programa.

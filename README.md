@@ -80,4 +80,26 @@ Java 1.8 o superior.
 
 ### f. Manual de usuario y técnico:
 
+#### 1. Ventana principal:
+La ventana principal de nuestro Z80 esta principalmente compuesta por la interfaz que muestra la arquitectura interna del Z80 mostrando los valores de sus registros los cuales se actualizan a cada momento que se ejecute un programa previamente cargado, adicionalmente se agregan opciones para reiniciar la CPU y cambiar los ciclos de ejecución para visualizar paso a paso la ejecución del programa o que este se ejecute completamente de principio a fin.
+Tambien contamos con un menu superior el cual nos permite acceder a un editor de codigo el cual explicaremos a continuación.
+
+![Ventana principal](/imgmanual/m1.jpg )
+#### 2. Editor de Código:
+El editor de código cuenta con una pequeña interfaz la cual permite abrir un archivo con extención ".ma" la cual es la que usaremos en el lenguaje diseñado para este proyecto el cual se bautizo como MAFE. Asi mismo se permite visualizarlo y editarlo. 
+Una vez que este terminado el código de nuestro programa se compila oprimiendo el boton de "Compilar" generando el Assembler correspondinete que recibira el Z80, este Assembler debe ser guardado con el boton "Guardar Assembler" en un archivo de extención ".asm" la cual elegimos para identificar nuestros archivos de formato Assembler y posteriormente cargar en nuestro Editor de Assembler.
+
+![Editor de codigo](/imgmanual/m2.jpg )
+#### 3. Editor de Assembler:
+El editor de Assembler cuenta con una pequeña interfaz la cual permite abrir el archivos con extención ".asm" que hayamos generado previamente en el editor de código, asi mismo se permite visualizarlo y editarlo, una vez hayamos terminado de editar o verificar que nuestro Assembler es correcto procedemos a generar el codigo re-localizable a nuestro Z80 oprimiendo el boton Assemble y visualizando la dirección de memoria y la instruccion de maquina en la casilla de texto inferior.
+
+![Editor de Assembler](/imgmanual/m3.jpg )
+#### 4. Editor de Memoria y DEBUG:
+
+**Nota: Paso previo: Para visualizar el codigo maquina en el Editor de Memoria se debe haber oprimido previamente el boton "Cargar Assembler" en la ventana principal**
+
+El editor de Memoria cuenta con una pequeña tabla la cual permite visualizar y editar el codigo relocalizable que hayamos generado previamente en el editor de Assembler,una vez hayamos terminado de editar o verificar que nuestro memoria es correcta procedemos a oprimir el boton de **Ejecutar Programa** en la ventana principal visualizando el debug en el editor de memoria de las instrucciones ejecutadas por el Z80.
+
+![Editor de Memoria y DEBUG](/imgmanual/m4.jpg )
+
 ### g. Informe ejecutivo, ejemplos:

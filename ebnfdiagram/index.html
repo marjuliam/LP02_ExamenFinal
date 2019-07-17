@@ -1,0 +1,426 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="generator" content="Railroad Diagram Generator 1.59.1797">
+      <style type="text/css" xml:space="preserve">
+    ::-moz-selection
+    {
+      color: #FFFCF0;
+      background: #0F0C00;
+    }
+    ::selection
+    {
+      color: #FFFCF0;
+      background: #0F0C00;
+    }      
+    .ebnf a, .grammar a
+    {
+      text-decoration: none;
+    }
+    .ebnf a:hover, .grammar a:hover
+    {
+      color: #050400;
+      text-decoration: underline;
+    }    
+    .signature
+    {
+      color: #806600;
+      font-size: 11px;
+      text-align: right;
+    }
+    body
+    {
+      font: normal 12px Verdana, sans-serif;
+      color: #0F0C00;
+      background: #FFFCF0;
+    }
+    a:link, a:visited
+    {
+      color: #0F0C00;
+    }
+    a:link.signature, a:visited.signature
+    {
+      color: #806600;
+    }
+    a.button, #tabs li a
+    {
+      padding: 0.25em 0.5em;
+      border: 1px solid #806600;
+      background: #F1E8C6;
+      color: #806600;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a.button:hover, #tabs li a:hover
+    {
+      color: #050400;
+      background: #FFF6D1;
+      border-color: #050400;       
+    }     
+    #tabs
+    {
+      padding: 3px 10px;
+      margin-left: 0;
+      margin-top: 58px;
+      border-bottom: 1px solid #0F0C00;
+    }  
+    #tabs li
+    {
+      list-style: none;
+      margin-left: 5px;
+      display: inline;
+    }
+    #tabs li a
+    {     
+      border-bottom: 1px solid #0F0C00;
+    }
+    #tabs li a.active
+    {
+      color: #0F0C00;
+      background: #FFFCF0;
+      border-color: #0F0C00;
+      border-bottom: 1px solid #FFFCF0;
+      outline: none;
+    }
+    #divs div
+    {
+      display: none;
+      overflow:auto;
+    }
+    #divs div.active
+    {
+      display: block;
+    }
+    #text
+    {
+      border-color: #806600;
+      background: #FFFEFA;
+      color: #050400;
+    }
+    .small
+    {
+      vertical-align: top;
+      text-align: right;
+      font-size: 9px;
+      font-weight: normal;
+      line-height: 120%;
+    }
+    td.small
+    {
+      padding-top: 0px;
+    }
+    .hidden
+    {
+      visibility: hidden;
+    }
+    td:hover .hidden 
+    {
+      visibility: visible;
+    }
+    div.download
+    {
+      display: none;
+      background: #FFFCF0;
+      position: absolute;
+      right: 34px;
+      top: 94px;
+      padding: 10px;
+      border: 1px dotted #0F0C00;
+    }
+    #divs div.ebnf, .ebnf code
+    {
+      display: block;
+      padding: 10px;
+      background: #FFF6D1;
+      width: 992px;
+    }
+    #divs div.grammar
+    {
+      display: block;
+      padding-left: 16px;
+      padding-top: 2px;
+      padding-bottom: 2px;
+      background: #FFF6D1;
+    }
+    pre
+    {
+      margin: 0px;
+    }
+    .ebnf div
+    {
+      padding-left: 13ch;
+      text-indent: -13ch;
+    }
+    .ebnf code, .grammar code, textarea, pre
+    {
+      font:12px SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+    }
+    tr.option-line td:first-child
+    {
+      text-align: right
+    }
+    tr.option-text td
+    {
+      padding-bottom: 10px
+    }
+    table.palette
+    {
+      border-top: 1px solid #050400;
+      border-right: 1px solid #050400;
+      margin-bottom: 4px
+    }
+    td.palette
+    {
+      border-bottom: 1px solid #050400;
+      border-left: 1px solid #050400;
+    }
+    a.palette
+    {
+      padding: 2px 3px 2px 10px;
+      text-decoration: none;
+    }
+    .palette
+    {
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -o-user-select: none;
+      -ms-user-select: none;
+    }
+  </style>
+   </head>
+   <body>
+      
+      <p style="font-size: 14px; font-weight:bold"><a name="program" shape="rect">program:</a></p><img border="0" src="diagram/program.png" height="71" width="437" usemap="#program.map"><map name="program.map"><area shape="rect" coords="135,35,169,67" href="#ID" title="ID"><area shape="rect" coords="257,1,339,33" href="#sentencia" title="sentencia"></map><p>
+         
+         <div class="ebnf"><code>
+               
+               <div><a href="#program" title="program" shape="rect">program</a>&nbsp;&nbsp;::= 'programa' <a href="#ID" title="ID" shape="rect">ID</a> '{' <a href="#sentencia" title="sentencia" shape="rect">sentencia</a>* '}'</div></code></div>
+         </p>
+      
+      <p>no references</p><br clear="none"><p style="font-size: 14px; font-weight:bold"><a name="sentencia" shape="rect">sentencia:</a></p><img border="0" src="diagram/sentencia.png" height="433" width="205" usemap="#sentencia.map"><map name="sentencia.map"><area shape="rect" coords="49,1,123,33" href="#var_decl" title="var_decl"><area shape="rect" coords="49,45,123,77" href="#vec_decl" title="vec_decl"><area shape="rect" coords="49,89,147,121" href="#var_asign_n" title="var_asign_n"><area shape="rect" coords="49,133,147,165" href="#var_asign_v" title="var_asign_v"><area shape="rect" coords="49,177,103,209" href="#suma" title="suma"><area shape="rect" coords="49,221,101,253" href="#resta" title="resta"><area shape="rect" coords="49,265,155,297" href="#multiplicacion" title="multiplicacion"><area shape="rect" coords="49,309,117,341" href="#division" title="division"><area shape="rect" coords="49,353,103,385" href="#ifelse" title="ifelse"><area shape="rect" coords="49,397,113,429" href="#ciclofor" title="ciclofor"></map><p>
+         
+         <div class="ebnf"><code>
+               
+               <div><a href="#sentencia" title="sentencia" shape="rect">sentencia</a></div>
+               
+               <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= <a href="#var_decl" title="var_decl" shape="rect">var_decl</a></div>
+               
+               <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a href="#vec_decl" title="vec_decl" shape="rect">vec_decl</a></div>
+               
+               <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a href="#var_asign_n" title="var_asign_n" shape="rect">var_asign_n</a></div>
+               
+               <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a href="#var_asign_v" title="var_asign_v" shape="rect">var_asign_v</a></div>
+               
+               <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a href="#suma" title="suma" shape="rect">suma</a></div>
+               
+               <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a href="#resta" title="resta" shape="rect">resta</a></div>
+               
+               <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a href="#multiplicacion" title="multiplicacion" shape="rect">multiplicacion</a></div>
+               
+               <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a href="#division" title="division" shape="rect">division</a></div>
+               
+               <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a href="#ifelse" title="ifelse" shape="rect">ifelse</a></div>
+               
+               <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a href="#ciclofor" title="ciclofor" shape="rect">ciclofor</a></div></code></div>
+         </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            <li><a href="#ciclofor" title="ciclofor" shape="rect">ciclofor</a></li>
+            <li><a href="#ifelse" title="ifelse" shape="rect">ifelse</a></li>
+            <li><a href="#program" title="program" shape="rect">program</a></li>
+         </ul>
+         </p><br clear="none"><p style="font-size: 14px; font-weight:bold"><a name="ciclofor" shape="rect">ciclofor:</a></p><img border="0" src="diagram/ciclofor.png" height="71" width="813" usemap="#ciclofor.map"><map name="ciclofor.map"><area shape="rect" coords="133,35,215,67" href="#expresion" title="expresion"><area shape="rect" coords="275,35,357,67" href="#expresion" title="expresion"><area shape="rect" coords="417,35,499,67" href="#expresion" title="expresion"><area shape="rect" coords="633,1,715,33" href="#sentencia" title="sentencia"></map><p>
+         
+         <div class="ebnf"><code>
+               
+               <div><a href="#ciclofor" title="ciclofor" shape="rect">ciclofor</a>&nbsp;::= 'for' '(' <a href="#expresion" title="expresion" shape="rect">expresion</a> '' <a href="#expresion" title="expresion" shape="rect">expresion</a> '' <a href="#expresion" title="expresion" shape="rect">expresion</a> ')' '{' <a href="#sentencia" title="sentencia" shape="rect">sentencia</a>* '}'</div></code></div>
+         </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            <li><a href="#sentencia" title="sentencia" shape="rect">sentencia</a></li>
+         </ul>
+         </p><br clear="none"><p style="font-size: 14px; font-weight:bold"><a name="ifelse" shape="rect">ifelse:</a></p><img border="0" src="diagram/ifelse.png" height="71" width="755" usemap="#ifelse.map"><map name="ifelse.map"><area shape="rect" coords="77,35,183,67" href="#sentbooleana" title="sentbooleana"><area shape="rect" coords="271,1,353,33" href="#sentencia" title="sentencia"><area shape="rect" coords="575,1,657,33" href="#sentencia" title="sentencia"></map><p>
+         
+         <div class="ebnf"><code>
+               
+               <div><a href="#ifelse" title="ifelse" shape="rect">ifelse</a>&nbsp;&nbsp;&nbsp;::= 'if' <a href="#sentbooleana" title="sentbooleana" shape="rect">sentbooleana</a> '{' <a href="#sentencia" title="sentencia" shape="rect">sentencia</a>* '}' 'else' '{' <a href="#sentencia" title="sentencia" shape="rect">sentencia</a>* '}'</div></code></div>
+         </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            <li><a href="#sentencia" title="sentencia" shape="rect">sentencia</a></li>
+         </ul>
+         </p><br clear="none"><p style="font-size: 14px; font-weight:bold"><a name="sentbooleana" shape="rect">sentbooleana:</a></p><img border="0" src="diagram/sentbooleana.png" height="125" width="435" usemap="#sentbooleana.map"><map name="sentbooleana.map"><area shape="rect" coords="75,1,157,33" href="#expresion" title="expresion"><area shape="rect" coords="277,1,359,33" href="#expresion" title="expresion"></map><p>
+         
+         <div class="ebnf"><code>
+               
+               <div><a href="#sentbooleana" title="sentbooleana" shape="rect">sentbooleana</a></div>
+               
+               <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= '(' <a href="#expresion" title="expresion" shape="rect">expresion</a> ( '&gt;=' | '&lt;' | '==' ) <a href="#expresion" title="expresion" shape="rect">expresion</a> ')'</div></code></div>
+         </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            <li><a href="#ifelse" title="ifelse" shape="rect">ifelse</a></li>
+         </ul>
+         </p><br clear="none"><p style="font-size: 14px; font-weight:bold"><a name="var_decl" shape="rect">var_decl:</a></p><img border="0" src="diagram/var_decl.png" height="37" width="195" usemap="#var_decl.map"><map name="var_decl.map"><area shape="rect" coords="91,1,125,33" href="#ID" title="ID"></map><p>
+         
+         <div class="ebnf"><code>
+               
+               <div><a href="#var_decl" title="var_decl" shape="rect">var_decl</a>&nbsp;::= 'var' <a href="#ID" title="ID" shape="rect">ID</a> ''</div></code></div>
+         </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            <li><a href="#sentencia" title="sentencia" shape="rect">sentencia</a></li>
+         </ul>
+         </p><br clear="none"><p style="font-size: 14px; font-weight:bold"><a name="vec_decl" shape="rect">vec_decl:</a></p><img border="0" src="diagram/vec_decl.png" height="37" width="289" usemap="#vec_decl.map"><map name="vec_decl.map"><area shape="rect" coords="91,1,125,33" href="#ID" title="ID"><area shape="rect" coords="145,1,219,33" href="#NUMERO" title="NUMERO"></map><p>
+         
+         <div class="ebnf"><code>
+               
+               <div><a href="#vec_decl" title="vec_decl" shape="rect">vec_decl</a>&nbsp;::= 'vec' <a href="#ID" title="ID" shape="rect">ID</a> <a href="#NUMERO" title="NUMERO" shape="rect">NUMERO</a> ''</div></code></div>
+         </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            <li><a href="#sentencia" title="sentencia" shape="rect">sentencia</a></li>
+         </ul>
+         </p><br clear="none"><p style="font-size: 14px; font-weight:bold"><a name="var_asign_n" shape="rect">var_asign_n:</a></p><img border="0" src="diagram/var_asign_n.png" height="37" width="277" usemap="#var_asign_n.map"><map name="var_asign_n.map"><area shape="rect" coords="29,1,63,33" href="#ID" title="ID"><area shape="rect" coords="133,1,207,33" href="#NUMERO" title="NUMERO"></map><p>
+         
+         <div class="ebnf"><code>
+               
+               <div><a href="#var_asign_n" title="var_asign_n" shape="rect">var_asign_n</a></div>
+               
+               <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= <a href="#ID" title="ID" shape="rect">ID</a> '=' <a href="#NUMERO" title="NUMERO" shape="rect">NUMERO</a> ''</div></code></div>
+         </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            <li><a href="#sentencia" title="sentencia" shape="rect">sentencia</a></li>
+         </ul>
+         </p><br clear="none"><p style="font-size: 14px; font-weight:bold"><a name="var_asign_v" shape="rect">var_asign_v:</a></p><img border="0" src="diagram/var_asign_v.png" height="37" width="237" usemap="#var_asign_v.map"><map name="var_asign_v.map"><area shape="rect" coords="29,1,63,33" href="#ID" title="ID"><area shape="rect" coords="133,1,167,33" href="#ID" title="ID"></map><p>
+         
+         <div class="ebnf"><code>
+               
+               <div><a href="#var_asign_v" title="var_asign_v" shape="rect">var_asign_v</a></div>
+               
+               <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= <a href="#ID" title="ID" shape="rect">ID</a> '=' <a href="#ID" title="ID" shape="rect">ID</a> ''</div></code></div>
+         </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            <li><a href="#sentencia" title="sentencia" shape="rect">sentencia</a></li>
+         </ul>
+         </p><br clear="none"><p style="font-size: 14px; font-weight:bold"><a name="suma" shape="rect">suma:</a></p><img border="0" src="diagram/suma.png" height="37" width="529" usemap="#suma.map"><map name="suma.map"><area shape="rect" coords="29,1,63,33" href="#ID" title="ID"><area shape="rect" coords="179,1,261,33" href="#expresion" title="expresion"><area shape="rect" coords="331,1,413,33" href="#expresion" title="expresion"></map><p>
+         
+         <div class="ebnf"><code>
+               
+               <div><a href="#suma" title="suma" shape="rect">suma</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= <a href="#ID" title="ID" shape="rect">ID</a> '=' '(' <a href="#expresion" title="expresion" shape="rect">expresion</a> '+' <a href="#expresion" title="expresion" shape="rect">expresion</a> ')' ''</div></code></div>
+         </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            <li><a href="#sentencia" title="sentencia" shape="rect">sentencia</a></li>
+         </ul>
+         </p><br clear="none"><p style="font-size: 14px; font-weight:bold"><a name="resta" shape="rect">resta:</a></p><img border="0" src="diagram/resta.png" height="37" width="553" usemap="#resta.map"><map name="resta.map"><area shape="rect" coords="29,1,63,33" href="#ID" title="ID"><area shape="rect" coords="179,1,301,33" href="#expresionRESTA" title="expresionRESTA"><area shape="rect" coords="321,1,483,33" href="#expresionPAR_CIERRA" title="expresionPAR_CIERRA"></map><p>
+         
+         <div class="ebnf"><code>
+               
+               <div><a href="#resta" title="resta" shape="rect">resta</a>&nbsp;&nbsp;&nbsp;&nbsp;::= <a href="#ID" title="ID" shape="rect">ID</a> '=' '(' <a href="#expresionRESTA" title="expresionRESTA" shape="rect">expresionRESTA</a> <a href="#expresionPAR_CIERRA" title="expresionPAR_CIERRA" shape="rect">expresionPAR_CIERRA</a> ''</div></code></div>
+         </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            <li><a href="#sentencia" title="sentencia" shape="rect">sentencia</a></li>
+         </ul>
+         </p><br clear="none"><p style="font-size: 14px; font-weight:bold"><a name="multiplicacion" shape="rect">multiplicacion:</a></p><img border="0" src="diagram/multiplicacion.png" height="37" width="527" usemap="#multiplicacion.map"><map name="multiplicacion.map"><area shape="rect" coords="29,1,63,33" href="#ID" title="ID"><area shape="rect" coords="179,1,261,33" href="#expresion" title="expresion"><area shape="rect" coords="329,1,411,33" href="#expresion" title="expresion"></map><p>
+         
+         <div class="ebnf"><code>
+               
+               <div><a href="#multiplicacion" title="multiplicacion" shape="rect">multiplicacion</a></div>
+               
+               <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= <a href="#ID" title="ID" shape="rect">ID</a> '=' '(' <a href="#expresion" title="expresion" shape="rect">expresion</a> '*' <a href="#expresion" title="expresion" shape="rect">expresion</a> ')' ''</div></code></div>
+         </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            <li><a href="#sentencia" title="sentencia" shape="rect">sentencia</a></li>
+         </ul>
+         </p><br clear="none"><p style="font-size: 14px; font-weight:bold"><a name="division" shape="rect">division:</a></p><img border="0" src="diagram/division.png" height="37" width="527" usemap="#division.map"><map name="division.map"><area shape="rect" coords="29,1,63,33" href="#ID" title="ID"><area shape="rect" coords="179,1,261,33" href="#expresion" title="expresion"><area shape="rect" coords="329,1,411,33" href="#expresion" title="expresion"></map><p>
+         
+         <div class="ebnf"><code>
+               
+               <div><a href="#division" title="division" shape="rect">division</a>&nbsp;::= <a href="#ID" title="ID" shape="rect">ID</a> '=' '(' <a href="#expresion" title="expresion" shape="rect">expresion</a> '/' <a href="#expresion" title="expresion" shape="rect">expresion</a> ')' ''</div></code></div>
+         </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            <li><a href="#sentencia" title="sentencia" shape="rect">sentencia</a></li>
+         </ul>
+         </p><br clear="none"><p style="font-size: 14px; font-weight:bold"><a name="ID" shape="rect">ID:</a></p><img border="0" src="diagram/ID.png" height="291" width="283"><p>
+         
+         <div class="ebnf"><code>
+               
+               <div><a href="#ID" title="ID" shape="rect">ID</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= [a-zA-Z_] [a-zA-Z0-9_]*</div></code></div>
+         </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            <li><a href="#division" title="division" shape="rect">division</a></li>
+            <li><a href="#multiplicacion" title="multiplicacion" shape="rect">multiplicacion</a></li>
+            <li><a href="#program" title="program" shape="rect">program</a></li>
+            <li><a href="#resta" title="resta" shape="rect">resta</a></li>
+            <li><a href="#suma" title="suma" shape="rect">suma</a></li>
+            <li><a href="#var_asign_n" title="var_asign_n" shape="rect">var_asign_n</a></li>
+            <li><a href="#var_asign_v" title="var_asign_v" shape="rect">var_asign_v</a></li>
+            <li><a href="#var_decl" title="var_decl" shape="rect">var_decl</a></li>
+            <li><a href="#vec_decl" title="vec_decl" shape="rect">vec_decl</a></li>
+         </ul>
+         </p><br clear="none"><p style="font-size: 14px; font-weight:bold"><a name="NUMERO" shape="rect">NUMERO:</a></p><img border="0" src="diagram/NUMERO.png" height="53" width="161"><p>
+         
+         <div class="ebnf"><code>
+               
+               <div><a href="#NUMERO" title="NUMERO" shape="rect">NUMERO</a>&nbsp;&nbsp;&nbsp;::= [0-9]+</div></code></div>
+         </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            <li><a href="#var_asign_n" title="var_asign_n" shape="rect">var_asign_n</a></li>
+            <li><a href="#vec_decl" title="vec_decl" shape="rect">vec_decl</a></li>
+         </ul>
+         </p><br clear="none"><hr>
+      
+      <p>
+         
+         <table border="0" class="signature">
+            <tr>
+               <td style="width: 100%" rowspan="1" colspan="1">&nbsp;</td>
+               <td valign="top" rowspan="1" colspan="1">
+                  
+                  <nobr class="signature">... generated by <a name="Railroad-Diagram-Generator" class="signature" title="https://www.bottlecaps.de/rr/ui" href="https://www.bottlecaps.de/rr/ui" target="_blank" shape="rect">Railroad Diagram Generator</a></nobr>
+                  </td>
+               <td rowspan="1" colspan="1"><a name="Railroad-Diagram-Generator" title="https://www.bottlecaps.de/rr/ui" href="https://www.bottlecaps.de/rr/ui" target="_blank" shape="rect"><img border="0" src="diagram/rr-1.59.1797.png" height="16" width="16"></a></td>
+            </tr>
+         </table>
+         </p>
+      </body>
+</html>

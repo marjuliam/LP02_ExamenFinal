@@ -100,11 +100,69 @@ Son soportadas todas las instrucciones principales desde la tabla "ver fuente Ta
 Son soportadas las variable de valor numérico y los vectores también de valor numérico que estén definidos en el dominio de 0 hasta 255.
 ##### c. Operaciones matemáticas soportadas por el lenguaje implementado: 
 Son soportadas la suma, resta, multiplicación y división de números enteros o variables asociadas a estos.
+``` ejemplo: ./operaciones.ma```
+```
+programa main{
+  var a;
+  var b;
+  var suma;
+  var resta;
+  var multi;
+  var divic;
+  
+  a = 10;
+  b = 5;
+  suma = (a+b);
+  resta = (a-b);
+  multi = (a*b);
+  divic = (a/b);
+}
+
+```
 ##### d. Estructuras de selección soportadas por el lenguaje implementado: 
 Es soportado el if-else  con operaciones boleanas de mayor igual ">=" menor que"<" y la equivalencia lógica"==".
-##### d. Estructuras de control iterativas soportadas por el lenguaje implementado: 
+
+``` ejemplo: ./ifelse.ma```
+```
+programa main{
+  var a;
+  var b;
+  var valor;
+ 
+  a = 10;
+  b = 5;
+  
+  if(a>=0){
+      valor = (a+b);
+  }else{
+      valor = (a-b);
+  }
+}
+
+```
+
+##### e. Estructuras de control iterativas soportadas por el lenguaje implementado: 
 Es soportado el ciclo for el cual solo puede repetirse un x numero de veces con un contador siempre de valor 1.
 
+``` ejemplo: ./ciclofor.ma```
+```
+programa main{
+  var inicio;
+  var fin;
+  var incremento;
+  var a;
+  
+  a = 1;
+  inicio = 0;
+  fin = 10;
+  incremento = 1;
+  
+  for(inicio;fin;incremento){
+      a = (a+1);
+  }
+}
+
+```
 
 ### g. Informe ejecutivo, ejemplos:
 

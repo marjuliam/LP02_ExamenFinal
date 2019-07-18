@@ -26,9 +26,6 @@ El proyecto del curso consiste en analizar, diseñar e implementar un (pequeño)
 |  RESTA      |    '-'     |
 |  MULT      |    '*'     |
 |  DIVI      |    '/'     |
-|  AND      |    '&&'     |
-|  OR      |     ||      |
-|  NOT      |    '!'     |
 |  IF      |    'if'     |
 |  ELSE      |    'else'     |
 |  FOR      |    'for'     |

@@ -15,22 +15,24 @@ El proyecto del curso consiste en analizar, diseñar e implementar un (pequeño)
 ## Entregables
 
 ### a. Diseño de módulos construidos:
+### Ventana principal:
+
+La ventana principal es la encargada de gestionar el resto de clases "Z80,Editor Codigo,Editor Assembler, Editor de Memoria y asi mismo es el puente para intercomunicar los datos y mostrar la arquitectura y funcionamiento del z80, esta hace uso de las clases mencionadas para obtener los datos del estado actual del z80 en su ejecución y para cargar el codigo re-localizable.
+
+### Editor de Código:
+
+El editor de codigo esta implementado de tal forma que obtenga el texto de un fichero y este se pueda editar o guardar, adicionalmente esta clase cuenta con la comunicacion a las clases que ejecutan el compilador hecho en ANTLR el cual procesa el codigo para generar posteriormente el assembler del Z80 y asi poderlo guardar en un nuevo fichero.
+
+### Editor de Assembler:
+
+El editor de assembler esta implementado de tal forma que recibe el assembler y genera el codigo re-localizable y asigna las instrucciones que se van a ejecutar en formato hexadecimal y las guarda en una memoria temporal para posteriormente resolver las direcciones.
+
+### Z80:
+
+La CPU Z80 fue implementada de tal manera que pueda ejecutar las instrucciones principales como cargar a los registros, ejecutar sumas, restas y asignar variables alterando las banderas dependiendo de cada instrucción, este recibe el hexagesimal generado por el assembler en las direcciones de memoria ya resueltas y finalmente ejecuta cada una de estas cuando se oprime ejecutar en la ventana principal dependiendo de los ciclos que se le pongan en la casilla, siendo 4 el numero minimo para ejecutar una instruccion o mas dependiendo de la rapides que se quiere que se ejecute el programa.
 
 ![Class](/classDiagram/DiagramaDeClases.png)
-![Class](/classDiagram/Memory.png)
-![Class](/classDiagram/MemoryTableModel.png)
-![Class](/classDiagram/VentanaCodigo.png)
-![Class](/classDiagram/Z80.png)
-![Class](/classDiagram/Z80debug.png)
-![Class](/classDiagram/mafeBaseListener.png)
-![Class](/classDiagram/mafeBaseVisitor.png)
-![Class](/classDiagram/mafeLexer.png)
-![Class](/classDiagram/mafeListener.png)
-![Class](/classDiagram/mafeParser.png)
-![Class](/classDiagram/mafeVisitor.png)
-![Class](/classDiagram/ventanaAssembler.png)
-![Class](/classDiagram/ventanaMain.png)
-![Class](/classDiagram/ventanaMemoria.png)
+
 
 ### b. Categorías léxicas y sus expresiones regulares asociadas:
 |       Categoría léxica     |                 Expresión regular                  |

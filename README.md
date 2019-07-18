@@ -16,6 +16,22 @@ El proyecto del curso consiste en analizar, diseñar e implementar un (pequeño)
 
 ### a. Diseño de módulos construidos:
 
+![Class](/classDiagram/DiagramaDeClases.png)
+![Class](/classDiagram/Memory.png)
+![Class](/classDiagram/MemoryTableModel.png)
+![Class](/classDiagram/VentanaCodigo.png)
+![Class](/classDiagram/Z80.png)
+![Class](/classDiagram/Z80debug.png)
+![Class](/classDiagram/mafeBaseListener.png)
+![Class](/classDiagram/mafeBaseVisitor.png)
+![Class](/classDiagram/mafeLexer.png)
+![Class](/classDiagram/mafeListener.png)
+![Class](/classDiagram/mafeParser.png)
+![Class](/classDiagram/mafeVisitor.png)
+![Class](/classDiagram/ventanaAssembler.png)
+![Class](/classDiagram/ventanaMain.png)
+![Class](/classDiagram/ventanaMemoria.png)
+
 ### b. Categorías léxicas y sus expresiones regulares asociadas:
 |       Categoría léxica     |                 Expresión regular                  |
 |-----------------------|-----------------------------------------------|

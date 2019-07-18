@@ -1,5 +1,5 @@
 
-# LP02 - EXAMEN FINAL | "Sabemos que 5 de cada 10 personas son la mitad" Profesor Peña
+# LP02 - EXAMEN FINAL
 
 ## Propósito
 
@@ -11,7 +11,6 @@ El proyecto del curso consiste en analizar, diseñar e implementar un (pequeño)
 |-----------------------|-----------------------------------------------|
 | Luis Alejandro Higuarán Serrano      |    <lahiguarans@unal.edu.co>    |
 | Yesid Alberto Ochoa Luque      |    <yaochoal@unal.edu.co>     |
-| Profesor Peña      |    <prpeña@unal.edu.co>     |
 
 ## Entregables
 

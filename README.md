@@ -181,9 +181,4 @@ programa main{
 ## Requisitos
 Java 1.8 o superior.
 
-## Instrucciones de ejecución
-1. Abrir el ejecutable Programa/Taller.jar
-2. Seleccionar la plantilla_ejemplo.txt
-3. Seleccionar la tabla_ejemplo.xlsx
-4. Seleccionar una carpeta donde guardar los documentos generados.
-5. Oprimir en Iniciar Programa.
+

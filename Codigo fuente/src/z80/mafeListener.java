@@ -71,6 +71,26 @@ public interface mafeListener extends ParseTreeListener {
 	 */
 	void exitSentbooleana(mafeParser.SentbooleanaContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link mafeParser#sentboolenanawhile}.
+	 * @param ctx the parse tree
+	 */
+	void enterSentboolenanawhile(mafeParser.SentboolenanawhileContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link mafeParser#sentboolenanawhile}.
+	 * @param ctx the parse tree
+	 */
+	void exitSentboolenanawhile(mafeParser.SentboolenanawhileContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link mafeParser#ciclowhile}.
+	 * @param ctx the parse tree
+	 */
+	void enterCiclowhile(mafeParser.CiclowhileContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link mafeParser#ciclowhile}.
+	 * @param ctx the parse tree
+	 */
+	void exitCiclowhile(mafeParser.CiclowhileContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link mafeParser#var_decl}.
 	 * @param ctx the parse tree
 	 */

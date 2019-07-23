@@ -1,5 +1,6 @@
 // Generated from C:/Users/Zylfrox/IdeaProjects/Test\mafe.g4 by ANTLR 4.7.2
 package z80;
+
     import java.util.Map;
     import java.util.HashMap;
 
@@ -86,6 +87,30 @@ public class mafeBaseListener implements mafeListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSentbooleana(mafeParser.SentbooleanaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSentboolenanawhile(mafeParser.SentboolenanawhileContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSentboolenanawhile(mafeParser.SentboolenanawhileContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCiclowhile(mafeParser.CiclowhileContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCiclowhile(mafeParser.CiclowhileContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

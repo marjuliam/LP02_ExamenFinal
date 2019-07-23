@@ -49,9 +49,13 @@ La CPU Z80 fue implementada de tal manera que pueda ejecutar las instrucciones p
 |  IF      |    'if'     |
 |  ELSE      |    'else'     |
 |  FOR      |    'for'     |
+|  WHILE      |    'while'     |
 |  MAYORI      |    '>='     |
+|  MENORI      |    '<='     |
 |  MENORQ     |    '<'     |
+|  MAYORQ     |    '<'     |
 |  EQUIVA   |    '=='     |
+|  NOEQUIVA   |    '!='     |
 |  ASIGNAR |    '='     |
 |  LLAVE_ABRE|    '{'     |
 |  LLAVE_CIERRA|    '}'     |
@@ -152,7 +156,7 @@ programa main{
 
 ```
 ##### d. Estructuras de selección soportadas por el lenguaje implementado: 
-Es soportado el if-else  con operaciones boleanas de mayor igual ">=" menor que"<" y la equivalencia lógica"==".
+Es soportado el if-else  con operaciones boleanas basicas ">=,<=,<,>,==,!=".
 
 ``` ejemplo: ./ifelse.ma```
 ```
@@ -174,7 +178,7 @@ programa main{
 ```
 
 ##### e. Estructuras de control iterativas soportadas por el lenguaje implementado: 
-Es soportado el ciclo for el cual solo puede repetirse un x numero de veces con un contador siempre de valor 1.
+Es soportado el ciclo for el cual solo puede repetirse un x numero de veces con un contador siempre de valor 1 y el ciclo while.
 
 ``` ejemplo: ./ciclofor.ma```
 ```
@@ -193,6 +197,27 @@ programa main{
       a = (a+1);
   }
 }
+
+```
+
+``` ejemplo: ./whilegcd.ma```
+```
+
+programa main{
+var a;
+var b;
+a = 88;
+b = 92;
+
+    while(a!=b){
+      if(a>b){
+        a=(a-b);
+      }else{
+        b=(b-a);
+      }
+    }
+}
+
 
 ```
 

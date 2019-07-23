@@ -21,17 +21,6 @@ public class VentanaMain extends javax.swing.JFrame {
      */
     public VentanaMain() {
         initComponents();
-        
-        /*
-        int value = 16;
-        memoria.model.setValueAt("3E", 0, 1);
-        memoria.model.setValueAt("88", 0, 2);
-        memoria.model.setValueAt("32", 0, 3);
-        memoria.model.setValueAt("09", 0, 4);
-        memoria.model.setValueAt("00", 0, 5);
-        memoria.model.setValueAt("18", 0, 6);
-        memoria.model.setValueAt("FE", 0, 7);
-        */
     }
    
     /**

@@ -21,19 +21,19 @@ public class mafeParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		PROGRAMA=1, VAR=2, VEC=3, SUMA=4, RESTA=5, MULT=6, DIVI=7, AND=8, OR=9, 
-		NOT=10, IF=11, ELSE=12, FOR=13, MAYORI=14, MENORQ=15, EQUIVA=16, ASIGNAR=17, 
-		LLAVE_ABRE=18, LLAVE_CIERRA=19, PAR_ABRE=20, PAR_CIERRA=21, SEMICOLON=22, 
-		ID=23, NUMERO=24, ESPACIOS=25;
+		NOT=10, IF=11, ELSE=12, FOR=13, WHILE=14, MAYORI=15, MAYORQ=16, MENORI=17, 
+		MENORQ=18, EQUIVA=19, NOEQUIVA=20, ASIGNAR=21, LLAVE_ABRE=22, LLAVE_CIERRA=23, 
+		PAR_ABRE=24, PAR_CIERRA=25, SEMICOLON=26, ID=27, NUMERO=28, ESPACIOS=29;
 	public static final int
 		RULE_program = 0, RULE_sentencia = 1, RULE_expresion = 2, RULE_ciclofor = 3, 
-		RULE_ifelse = 4, RULE_sentbooleana = 5, RULE_var_decl = 6, RULE_vec_decl = 7, 
-		RULE_var_asign_n = 8, RULE_var_asign_v = 9, RULE_suma = 10, RULE_resta = 11, 
-		RULE_multiplicacion = 12, RULE_division = 13;
+		RULE_ifelse = 4, RULE_sentbooleana = 5, RULE_sentboolenanawhile = 6, RULE_ciclowhile = 7, 
+		RULE_var_decl = 8, RULE_vec_decl = 9, RULE_var_asign_n = 10, RULE_var_asign_v = 11, 
+		RULE_suma = 12, RULE_resta = 13, RULE_multiplicacion = 14, RULE_division = 15;
 	private static String[] makeRuleNames() {
 		return new String[] {
 			"program", "sentencia", "expresion", "ciclofor", "ifelse", "sentbooleana", 
-			"var_decl", "vec_decl", "var_asign_n", "var_asign_v", "suma", "resta", 
-			"multiplicacion", "division"
+			"sentboolenanawhile", "ciclowhile", "var_decl", "vec_decl", "var_asign_n", 
+			"var_asign_v", "suma", "resta", "multiplicacion", "division"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -41,17 +41,17 @@ public class mafeParser extends Parser {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, "'programa'", "'var'", "'vec'", "'+'", "'-'", "'*'", "'/'", "'&&'", 
-			"'||'", "'!'", "'if'", "'else'", "'for'", "'>='", "'<'", "'=='", "'='", 
-			"'{'", "'}'", "'('", "')'", "';'"
+			"'||'", "'!'", "'if'", "'else'", "'for'", "'while'", "'>='", "'>'", "'<='", 
+			"'<'", "'=='", "'!='", "'='", "'{'", "'}'", "'('", "')'", "';'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, "PROGRAMA", "VAR", "VEC", "SUMA", "RESTA", "MULT", "DIVI", "AND", 
-			"OR", "NOT", "IF", "ELSE", "FOR", "MAYORI", "MENORQ", "EQUIVA", "ASIGNAR", 
-			"LLAVE_ABRE", "LLAVE_CIERRA", "PAR_ABRE", "PAR_CIERRA", "SEMICOLON", 
-			"ID", "NUMERO", "ESPACIOS"
+			"OR", "NOT", "IF", "ELSE", "FOR", "WHILE", "MAYORI", "MAYORQ", "MENORI", 
+			"MENORQ", "EQUIVA", "NOEQUIVA", "ASIGNAR", "LLAVE_ABRE", "LLAVE_CIERRA", 
+			"PAR_ABRE", "PAR_CIERRA", "SEMICOLON", "ID", "NUMERO", "ESPACIOS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -106,6 +106,7 @@ public class mafeParser extends Parser {
 	    String subf = "1";
 	    int dirvar=32768;
 	    int ifcount = 1;
+	    int whilecount = 1;
 
 	public mafeParser(TokenStream input) {
 		super(input);
@@ -149,27 +150,27 @@ public class mafeParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(28);
+			setState(32);
 			match(PROGRAMA);
-			setState(29);
+			setState(33);
 			match(ID);
-			setState(30);
-			match(LLAVE_ABRE);
 			setState(34);
+			match(LLAVE_ABRE);
+			setState(38);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << VAR) | (1L << VEC) | (1L << IF) | (1L << FOR) | (1L << ID))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << VAR) | (1L << VEC) | (1L << IF) | (1L << FOR) | (1L << WHILE) | (1L << ID))) != 0)) {
 				{
 				{
-				setState(31);
+				setState(35);
 				sentencia();
 				}
 				}
-				setState(36);
+				setState(40);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(37);
+			setState(41);
 			match(LLAVE_CIERRA);
 			}
 		}
@@ -215,6 +216,9 @@ public class mafeParser extends Parser {
 		public CicloforContext ciclofor() {
 			return getRuleContext(CicloforContext.class,0);
 		}
+		public CiclowhileContext ciclowhile() {
+			return getRuleContext(CiclowhileContext.class,0);
+		}
 		public SentenciaContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -238,77 +242,84 @@ public class mafeParser extends Parser {
 		SentenciaContext _localctx = new SentenciaContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_sentencia);
 		try {
-			setState(49);
+			setState(54);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(39);
+				setState(43);
 				var_decl();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(40);
+				setState(44);
 				vec_decl();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(41);
+				setState(45);
 				var_asign_n();
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(42);
+				setState(46);
 				var_asign_v();
 				}
 				break;
 			case 5:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(43);
+				setState(47);
 				suma();
 				}
 				break;
 			case 6:
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(44);
+				setState(48);
 				resta();
 				}
 				break;
 			case 7:
 				enterOuterAlt(_localctx, 7);
 				{
-				setState(45);
+				setState(49);
 				multiplicacion();
 				}
 				break;
 			case 8:
 				enterOuterAlt(_localctx, 8);
 				{
-				setState(46);
+				setState(50);
 				division();
 				}
 				break;
 			case 9:
 				enterOuterAlt(_localctx, 9);
 				{
-				setState(47);
+				setState(51);
 				ifelse();
 				}
 				break;
 			case 10:
 				enterOuterAlt(_localctx, 10);
 				{
-				setState(48);
+				setState(52);
 				ciclofor();
+				}
+				break;
+			case 11:
+				enterOuterAlt(_localctx, 11);
+				{
+				setState(53);
+				ciclowhile();
 				}
 				break;
 			}
@@ -353,13 +364,13 @@ public class mafeParser extends Parser {
 		ExpresionContext _localctx = new ExpresionContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_expresion);
 		try {
-			setState(55);
+			setState(60);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case NUMERO:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(51);
+				setState(56);
 				((ExpresionContext)_localctx).NUMERO = match(NUMERO);
 				((ExpresionContext)_localctx).value =  (((ExpresionContext)_localctx).NUMERO!=null?((ExpresionContext)_localctx).NUMERO.getText():null);
 				}
@@ -367,7 +378,7 @@ public class mafeParser extends Parser {
 			case ID:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(53);
+				setState(58);
 				((ExpresionContext)_localctx).ID = match(ID);
 				 ((ExpresionContext)_localctx).value =  "(" + (((ExpresionContext)_localctx).ID!=null?((ExpresionContext)_localctx).ID.getText():null) + subf + ")" ;
 				}
@@ -436,20 +447,20 @@ public class mafeParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(57);
+			setState(62);
 			match(FOR);
-			setState(58);
+			setState(63);
 			match(PAR_ABRE);
-			setState(59);
+			setState(64);
 			((CicloforContext)_localctx).expresion = expresion();
 
 			                String temp1 = ((CicloforContext)_localctx).expresion.value;
 			                assembler += "\n loop_init:";
 			                assembler += "\n LD H, "+temp1;
 			            
-			setState(61);
+			setState(66);
 			match(SEMICOLON);
-			setState(62);
+			setState(67);
 			((CicloforContext)_localctx).expresion = expresion();
 
 			                assembler += "\n loop_cond:";
@@ -458,31 +469,31 @@ public class mafeParser extends Parser {
 			                assembler += "\n CP H";
 			                assembler += "\n JP Z, loop_end";
 			            
-			setState(64);
+			setState(69);
 			match(SEMICOLON);
-			setState(65);
+			setState(70);
 			((CicloforContext)_localctx).expresion = expresion();
 
 			                String temp3 = ((CicloforContext)_localctx).expresion.value;
 			            
-			setState(67);
+			setState(72);
 			match(PAR_CIERRA);
-			setState(68);
+			setState(73);
 			match(LLAVE_ABRE);
 
 			                assembler += "\n loop_body:";
 			            
-			setState(73);
+			setState(78);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << VAR) | (1L << VEC) | (1L << IF) | (1L << FOR) | (1L << ID))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << VAR) | (1L << VEC) | (1L << IF) | (1L << FOR) | (1L << WHILE) | (1L << ID))) != 0)) {
 				{
 				{
-				setState(70);
+				setState(75);
 				sentencia();
 				}
 				}
-				setState(75);
+				setState(80);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -491,7 +502,7 @@ public class mafeParser extends Parser {
 			               assembler += "\n INC H";
 			               assembler += "\n JP loop_cond";
 			            
-			setState(77);
+			setState(82);
 			match(LLAVE_CIERRA);
 
 			               assembler += "\n loop_end:";
@@ -511,9 +522,11 @@ public class mafeParser extends Parser {
 
 	public static class IfelseContext extends ParserRuleContext {
 		public TerminalNode IF() { return getToken(mafeParser.IF, 0); }
+		public TerminalNode PAR_ABRE() { return getToken(mafeParser.PAR_ABRE, 0); }
 		public SentbooleanaContext sentbooleana() {
 			return getRuleContext(SentbooleanaContext.class,0);
 		}
+		public TerminalNode PAR_CIERRA() { return getToken(mafeParser.PAR_CIERRA, 0); }
 		public List<TerminalNode> LLAVE_ABRE() { return getTokens(mafeParser.LLAVE_ABRE); }
 		public TerminalNode LLAVE_ABRE(int i) {
 			return getToken(mafeParser.LLAVE_ABRE, i);
@@ -555,61 +568,65 @@ public class mafeParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(80);
+			setState(85);
 			match(IF);
 
 			                int actual = ifcount;
 			                ifcount = ifcount+1;
 			                assembler += "\n If"+actual+":";
 			            
-			setState(82);
+			setState(87);
+			match(PAR_ABRE);
+			setState(88);
 			sentbooleana(actual);
+			setState(89);
+			match(PAR_CIERRA);
 
 			                assembler += "\n Then"+actual+":";
 			            
-			setState(84);
+			setState(91);
 			match(LLAVE_ABRE);
-			setState(88);
+			setState(95);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << VAR) | (1L << VEC) | (1L << IF) | (1L << FOR) | (1L << ID))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << VAR) | (1L << VEC) | (1L << IF) | (1L << FOR) | (1L << WHILE) | (1L << ID))) != 0)) {
 				{
 				{
-				setState(85);
+				setState(92);
 				sentencia();
 				}
 				}
-				setState(90);
+				setState(97);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(91);
+			setState(98);
 			match(LLAVE_CIERRA);
 
 			                assembler += "\n jp Endif"+actual;
 			            
-			setState(93);
+			setState(100);
 			match(ELSE);
 
 			                assembler += "\n Else"+actual+":";
 			            
-			setState(95);
+			setState(102);
 			match(LLAVE_ABRE);
-			setState(99);
+			setState(106);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << VAR) | (1L << VEC) | (1L << IF) | (1L << FOR) | (1L << ID))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << VAR) | (1L << VEC) | (1L << IF) | (1L << FOR) | (1L << WHILE) | (1L << ID))) != 0)) {
 				{
 				{
-				setState(96);
+				setState(103);
 				sentencia();
 				}
 				}
-				setState(101);
+				setState(108);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(102);
+			setState(109);
 			match(LLAVE_CIERRA);
 
 			                assembler += "\n Endif"+actual+":";
@@ -630,17 +647,18 @@ public class mafeParser extends Parser {
 	public static class SentbooleanaContext extends ParserRuleContext {
 		public int actual;
 		public ExpresionContext expresion;
-		public TerminalNode PAR_ABRE() { return getToken(mafeParser.PAR_ABRE, 0); }
 		public List<ExpresionContext> expresion() {
 			return getRuleContexts(ExpresionContext.class);
 		}
 		public ExpresionContext expresion(int i) {
 			return getRuleContext(ExpresionContext.class,i);
 		}
-		public TerminalNode MAYORI() { return getToken(mafeParser.MAYORI, 0); }
-		public TerminalNode PAR_CIERRA() { return getToken(mafeParser.PAR_CIERRA, 0); }
+		public TerminalNode MAYORQ() { return getToken(mafeParser.MAYORQ, 0); }
 		public TerminalNode MENORQ() { return getToken(mafeParser.MENORQ, 0); }
+		public TerminalNode MENORI() { return getToken(mafeParser.MENORI, 0); }
+		public TerminalNode MAYORI() { return getToken(mafeParser.MAYORI, 0); }
 		public TerminalNode EQUIVA() { return getToken(mafeParser.EQUIVA, 0); }
+		public TerminalNode NOEQUIVA() { return getToken(mafeParser.NOEQUIVA, 0); }
 		public SentbooleanaContext(ParserRuleContext parent, int invokingState) { super(parent, invokingState); }
 		public SentbooleanaContext(ParserRuleContext parent, int invokingState, int actual) {
 			super(parent, invokingState);
@@ -666,48 +684,40 @@ public class mafeParser extends Parser {
 		SentbooleanaContext _localctx = new SentbooleanaContext(_ctx, getState(), actual);
 		enterRule(_localctx, 10, RULE_sentbooleana);
 		try {
-			setState(132);
+			setState(154);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,6,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(105);
-				match(PAR_ABRE);
-				setState(106);
+				setState(112);
 				((SentbooleanaContext)_localctx).expresion = expresion();
 				String temp1 = ((SentbooleanaContext)_localctx).expresion.value;
-				setState(108);
-				match(MAYORI);
-				setState(109);
+				setState(114);
+				match(MAYORQ);
+				setState(115);
 				((SentbooleanaContext)_localctx).expresion = expresion();
 				String temp2 = ((SentbooleanaContext)_localctx).expresion.value;
-				setState(111);
-				match(PAR_CIERRA);
 
-				                assembler += "\n LD A,"+temp2;
-				                assembler += "\n LD B,A";
 				                assembler += "\n LD A,"+temp1;
+				                assembler += "\n LD B,A";
+				                assembler += "\n LD A,"+temp2;
 				                assembler += "\n SUB B";
-				                assembler += "\n JP C, Else"+_localctx.actual;
+				                assembler += "\n JP NC, Else"+actual;
 				              
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(114);
-				match(PAR_ABRE);
-				setState(115);
+				setState(119);
 				((SentbooleanaContext)_localctx).expresion = expresion();
 				String temp1 = ((SentbooleanaContext)_localctx).expresion.value;
-				setState(117);
+				setState(121);
 				match(MENORQ);
-				setState(118);
+				setState(122);
 				((SentbooleanaContext)_localctx).expresion = expresion();
 				String temp2 = ((SentbooleanaContext)_localctx).expresion.value;
-				setState(120);
-				match(PAR_CIERRA);
 
 				                assembler += "\n LD A,"+temp2;
 				                assembler += "\n LD B,A";
@@ -720,18 +730,54 @@ public class mafeParser extends Parser {
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(123);
-				match(PAR_ABRE);
-				setState(124);
+				setState(126);
 				((SentbooleanaContext)_localctx).expresion = expresion();
 				String temp1 = ((SentbooleanaContext)_localctx).expresion.value;
-				setState(126);
-				match(EQUIVA);
-				setState(127);
+				setState(128);
+				match(MENORI);
+				setState(129);
 				((SentbooleanaContext)_localctx).expresion = expresion();
 				String temp2 = ((SentbooleanaContext)_localctx).expresion.value;
-				setState(129);
-				match(PAR_CIERRA);
+
+				                assembler += "\n LD A,"+temp1;
+				                assembler += "\n LD B,A";
+				                assembler += "\n LD A,"+temp2;
+				                assembler += "\n SUB B";
+				                assembler += "\n JP C, Else"+actual;
+				              
+				}
+				break;
+			case 4:
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(133);
+				((SentbooleanaContext)_localctx).expresion = expresion();
+				String temp1 = ((SentbooleanaContext)_localctx).expresion.value;
+				setState(135);
+				match(MAYORI);
+				setState(136);
+				((SentbooleanaContext)_localctx).expresion = expresion();
+				String temp2 = ((SentbooleanaContext)_localctx).expresion.value;
+
+				                assembler += "\n LD A,"+temp2;
+				                assembler += "\n LD B,A";
+				                assembler += "\n LD A,"+temp1;
+				                assembler += "\n SUB B";
+				                assembler += "\n JP C, Else"+actual;
+				              
+				}
+				break;
+			case 5:
+				enterOuterAlt(_localctx, 5);
+				{
+				setState(140);
+				((SentbooleanaContext)_localctx).expresion = expresion();
+				String temp1 = ((SentbooleanaContext)_localctx).expresion.value;
+				setState(142);
+				match(EQUIVA);
+				setState(143);
+				((SentbooleanaContext)_localctx).expresion = expresion();
+				String temp2 = ((SentbooleanaContext)_localctx).expresion.value;
 
 				                assembler += "\n LD A,"+temp2;
 				                assembler += "\n LD B,A";
@@ -741,6 +787,291 @@ public class mafeParser extends Parser {
 				              
 				}
 				break;
+			case 6:
+				enterOuterAlt(_localctx, 6);
+				{
+				setState(147);
+				((SentbooleanaContext)_localctx).expresion = expresion();
+				String temp1 = ((SentbooleanaContext)_localctx).expresion.value;
+				setState(149);
+				match(NOEQUIVA);
+				setState(150);
+				((SentbooleanaContext)_localctx).expresion = expresion();
+				String temp2 = ((SentbooleanaContext)_localctx).expresion.value;
+
+				                assembler += "\n LD A,"+temp2;
+				                assembler += "\n LD B,A";
+				                assembler += "\n LD A,"+temp1;
+				                assembler += "\n SUB B";
+				                assembler += "\n JP Z, Else"+actual;
+				              
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class SentboolenanawhileContext extends ParserRuleContext {
+		public int actual;
+		public ExpresionContext expresion;
+		public List<ExpresionContext> expresion() {
+			return getRuleContexts(ExpresionContext.class);
+		}
+		public ExpresionContext expresion(int i) {
+			return getRuleContext(ExpresionContext.class,i);
+		}
+		public TerminalNode MAYORQ() { return getToken(mafeParser.MAYORQ, 0); }
+		public TerminalNode MENORQ() { return getToken(mafeParser.MENORQ, 0); }
+		public TerminalNode MENORI() { return getToken(mafeParser.MENORI, 0); }
+		public TerminalNode MAYORI() { return getToken(mafeParser.MAYORI, 0); }
+		public TerminalNode EQUIVA() { return getToken(mafeParser.EQUIVA, 0); }
+		public TerminalNode NOEQUIVA() { return getToken(mafeParser.NOEQUIVA, 0); }
+		public SentboolenanawhileContext(ParserRuleContext parent, int invokingState) { super(parent, invokingState); }
+		public SentboolenanawhileContext(ParserRuleContext parent, int invokingState, int actual) {
+			super(parent, invokingState);
+			this.actual = actual;
+		}
+		@Override public int getRuleIndex() { return RULE_sentboolenanawhile; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof mafeListener ) ((mafeListener)listener).enterSentboolenanawhile(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof mafeListener ) ((mafeListener)listener).exitSentboolenanawhile(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof mafeVisitor ) return ((mafeVisitor<? extends T>)visitor).visitSentboolenanawhile(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final SentboolenanawhileContext sentboolenanawhile(int actual) throws RecognitionException {
+		SentboolenanawhileContext _localctx = new SentboolenanawhileContext(_ctx, getState(), actual);
+		enterRule(_localctx, 12, RULE_sentboolenanawhile);
+		try {
+			setState(198);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,7,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(156);
+				((SentboolenanawhileContext)_localctx).expresion = expresion();
+				String temp1 = ((SentboolenanawhileContext)_localctx).expresion.value;
+				setState(158);
+				match(MAYORQ);
+				setState(159);
+				((SentboolenanawhileContext)_localctx).expresion = expresion();
+				String temp2 = ((SentboolenanawhileContext)_localctx).expresion.value;
+
+				                assembler += "\n LD A,"+temp1;
+				                assembler += "\n LD B,A";
+				                assembler += "\n LD A,"+temp2;
+				                assembler += "\n SUB B";
+				                assembler += "\n JP NC, EndWhile"+actual;
+				              
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(163);
+				((SentboolenanawhileContext)_localctx).expresion = expresion();
+				String temp1 = ((SentboolenanawhileContext)_localctx).expresion.value;
+				setState(165);
+				match(MENORQ);
+				setState(166);
+				((SentboolenanawhileContext)_localctx).expresion = expresion();
+				String temp2 = ((SentboolenanawhileContext)_localctx).expresion.value;
+
+				                assembler += "\n LD A,"+temp2;
+				                assembler += "\n LD B,A";
+				                assembler += "\n LD A,"+temp1;
+				                assembler += "\n SUB B";
+				                assembler += "\n JP NC, EndWhile"+actual;
+				              
+				}
+				break;
+			case 3:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(170);
+				((SentboolenanawhileContext)_localctx).expresion = expresion();
+				String temp1 = ((SentboolenanawhileContext)_localctx).expresion.value;
+				setState(172);
+				match(MENORI);
+				setState(173);
+				((SentboolenanawhileContext)_localctx).expresion = expresion();
+				String temp2 = ((SentboolenanawhileContext)_localctx).expresion.value;
+
+				                assembler += "\n LD A,"+temp1;
+				                assembler += "\n LD B,A";
+				                assembler += "\n LD A,"+temp2;
+				                assembler += "\n SUB B";
+				                assembler += "\n JP C, EndWhile"+actual;
+				              
+				}
+				break;
+			case 4:
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(177);
+				((SentboolenanawhileContext)_localctx).expresion = expresion();
+				String temp1 = ((SentboolenanawhileContext)_localctx).expresion.value;
+				setState(179);
+				match(MAYORI);
+				setState(180);
+				((SentboolenanawhileContext)_localctx).expresion = expresion();
+				String temp2 = ((SentboolenanawhileContext)_localctx).expresion.value;
+
+				                assembler += "\n LD A,"+temp2;
+				                assembler += "\n LD B,A";
+				                assembler += "\n LD A,"+temp1;
+				                assembler += "\n SUB B";
+				                assembler += "\n JP C, EndWhile"+actual;
+				              
+				}
+				break;
+			case 5:
+				enterOuterAlt(_localctx, 5);
+				{
+				setState(184);
+				((SentboolenanawhileContext)_localctx).expresion = expresion();
+				String temp1 = ((SentboolenanawhileContext)_localctx).expresion.value;
+				setState(186);
+				match(EQUIVA);
+				setState(187);
+				((SentboolenanawhileContext)_localctx).expresion = expresion();
+				String temp2 = ((SentboolenanawhileContext)_localctx).expresion.value;
+
+				                assembler += "\n LD A,"+temp2;
+				                assembler += "\n LD B,A";
+				                assembler += "\n LD A,"+temp1;
+				                assembler += "\n SUB B";
+				                assembler += "\n JP NZ, EndWhile"+actual;
+				              
+				}
+				break;
+			case 6:
+				enterOuterAlt(_localctx, 6);
+				{
+				setState(191);
+				((SentboolenanawhileContext)_localctx).expresion = expresion();
+				String temp1 = ((SentboolenanawhileContext)_localctx).expresion.value;
+				setState(193);
+				match(NOEQUIVA);
+				setState(194);
+				((SentboolenanawhileContext)_localctx).expresion = expresion();
+				String temp2 = ((SentboolenanawhileContext)_localctx).expresion.value;
+
+				                assembler += "\n LD A,"+temp2;
+				                assembler += "\n LD B,A";
+				                assembler += "\n LD A,"+temp1;
+				                assembler += "\n SUB B";
+				                assembler += "\n JP Z, EndWhile"+actual;
+				              
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class CiclowhileContext extends ParserRuleContext {
+		public TerminalNode WHILE() { return getToken(mafeParser.WHILE, 0); }
+		public TerminalNode PAR_ABRE() { return getToken(mafeParser.PAR_ABRE, 0); }
+		public SentboolenanawhileContext sentboolenanawhile() {
+			return getRuleContext(SentboolenanawhileContext.class,0);
+		}
+		public TerminalNode PAR_CIERRA() { return getToken(mafeParser.PAR_CIERRA, 0); }
+		public TerminalNode LLAVE_ABRE() { return getToken(mafeParser.LLAVE_ABRE, 0); }
+		public TerminalNode LLAVE_CIERRA() { return getToken(mafeParser.LLAVE_CIERRA, 0); }
+		public List<SentenciaContext> sentencia() {
+			return getRuleContexts(SentenciaContext.class);
+		}
+		public SentenciaContext sentencia(int i) {
+			return getRuleContext(SentenciaContext.class,i);
+		}
+		public CiclowhileContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_ciclowhile; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof mafeListener ) ((mafeListener)listener).enterCiclowhile(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof mafeListener ) ((mafeListener)listener).exitCiclowhile(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof mafeVisitor ) return ((mafeVisitor<? extends T>)visitor).visitCiclowhile(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final CiclowhileContext ciclowhile() throws RecognitionException {
+		CiclowhileContext _localctx = new CiclowhileContext(_ctx, getState());
+		enterRule(_localctx, 14, RULE_ciclowhile);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(200);
+			match(WHILE);
+
+			                int actual = whilecount;
+			                whilecount = whilecount+1;
+			                assembler += "\n While"+actual+":";
+			            
+			setState(202);
+			match(PAR_ABRE);
+			setState(203);
+			sentboolenanawhile(actual);
+			setState(204);
+			match(PAR_CIERRA);
+			setState(205);
+			match(LLAVE_ABRE);
+			setState(209);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << VAR) | (1L << VEC) | (1L << IF) | (1L << FOR) | (1L << WHILE) | (1L << ID))) != 0)) {
+				{
+				{
+				setState(206);
+				sentencia();
+				}
+				}
+				setState(211);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
+			setState(212);
+			match(LLAVE_CIERRA);
+
+			                assembler += "\n JP While"+actual;
+			                assembler += "\n EndWhile"+actual+":";
+			            
 			}
 		}
 		catch (RecognitionException re) {
@@ -780,15 +1111,15 @@ public class mafeParser extends Parser {
 
 	public final Var_declContext var_decl() throws RecognitionException {
 		Var_declContext _localctx = new Var_declContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_var_decl);
+		enterRule(_localctx, 16, RULE_var_decl);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(134);
+			setState(215);
 			match(VAR);
-			setState(135);
+			setState(216);
 			((Var_declContext)_localctx).ID = match(ID);
-			setState(136);
+			setState(217);
 			match(SEMICOLON);
 
 			            String varname = (((Var_declContext)_localctx).ID!=null?((Var_declContext)_localctx).ID.getText():null) + subf;
@@ -838,17 +1169,17 @@ public class mafeParser extends Parser {
 
 	public final Vec_declContext vec_decl() throws RecognitionException {
 		Vec_declContext _localctx = new Vec_declContext(_ctx, getState());
-		enterRule(_localctx, 14, RULE_vec_decl);
+		enterRule(_localctx, 18, RULE_vec_decl);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(139);
+			setState(220);
 			match(VEC);
-			setState(140);
+			setState(221);
 			((Vec_declContext)_localctx).ID = match(ID);
-			setState(141);
+			setState(222);
 			((Vec_declContext)_localctx).NUMERO = match(NUMERO);
-			setState(142);
+			setState(223);
 			match(SEMICOLON);
 
 			            int tamano = Integer.parseInt((((Vec_declContext)_localctx).NUMERO!=null?((Vec_declContext)_localctx).NUMERO.getText():null));
@@ -901,17 +1232,17 @@ public class mafeParser extends Parser {
 
 	public final Var_asign_nContext var_asign_n() throws RecognitionException {
 		Var_asign_nContext _localctx = new Var_asign_nContext(_ctx, getState());
-		enterRule(_localctx, 16, RULE_var_asign_n);
+		enterRule(_localctx, 20, RULE_var_asign_n);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(145);
+			setState(226);
 			((Var_asign_nContext)_localctx).ID = match(ID);
-			setState(146);
+			setState(227);
 			match(ASIGNAR);
-			setState(147);
+			setState(228);
 			((Var_asign_nContext)_localctx).NUMERO = match(NUMERO);
-			setState(148);
+			setState(229);
 			match(SEMICOLON);
 
 			            String varname = (((Var_asign_nContext)_localctx).ID!=null?((Var_asign_nContext)_localctx).ID.getText():null) + subf;
@@ -961,19 +1292,19 @@ public class mafeParser extends Parser {
 
 	public final Var_asign_vContext var_asign_v() throws RecognitionException {
 		Var_asign_vContext _localctx = new Var_asign_vContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_var_asign_v);
+		enterRule(_localctx, 22, RULE_var_asign_v);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(151);
+			setState(232);
 			((Var_asign_vContext)_localctx).ID = match(ID);
 			String temp1 = (((Var_asign_vContext)_localctx).ID!=null?((Var_asign_vContext)_localctx).ID.getText():null) + subf;
-			setState(153);
+			setState(234);
 			match(ASIGNAR);
-			setState(154);
+			setState(235);
 			((Var_asign_vContext)_localctx).ID = match(ID);
 			String temp2 = (((Var_asign_vContext)_localctx).ID!=null?((Var_asign_vContext)_localctx).ID.getText():null) + subf;
-			setState(156);
+			setState(237);
 			match(SEMICOLON);
 
 			            assembler += "\n ;asignar variable a otra variable";
@@ -1029,27 +1360,27 @@ public class mafeParser extends Parser {
 
 	public final SumaContext suma() throws RecognitionException {
 		SumaContext _localctx = new SumaContext(_ctx, getState());
-		enterRule(_localctx, 20, RULE_suma);
+		enterRule(_localctx, 24, RULE_suma);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(159);
+			setState(240);
 			((SumaContext)_localctx).ID = match(ID);
-			setState(160);
+			setState(241);
 			match(ASIGNAR);
-			setState(161);
+			setState(242);
 			match(PAR_ABRE);
-			setState(162);
+			setState(243);
 			((SumaContext)_localctx).expresion = expresion();
 			String temp1 = ((SumaContext)_localctx).expresion.value;
-			setState(164);
+			setState(245);
 			match(SUMA);
-			setState(165);
+			setState(246);
 			((SumaContext)_localctx).expresion = expresion();
 			 String temp2 = ((SumaContext)_localctx).expresion.value;
-			setState(167);
+			setState(248);
 			match(PAR_CIERRA);
-			setState(168);
+			setState(249);
 			match(SEMICOLON);
 
 			            assembler += "\n ;sumar "+temp1+"+"+temp2;
@@ -1108,27 +1439,27 @@ public class mafeParser extends Parser {
 
 	public final RestaContext resta() throws RecognitionException {
 		RestaContext _localctx = new RestaContext(_ctx, getState());
-		enterRule(_localctx, 22, RULE_resta);
+		enterRule(_localctx, 26, RULE_resta);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(171);
+			setState(252);
 			((RestaContext)_localctx).ID = match(ID);
-			setState(172);
+			setState(253);
 			match(ASIGNAR);
-			setState(173);
+			setState(254);
 			match(PAR_ABRE);
-			setState(174);
+			setState(255);
 			((RestaContext)_localctx).expresion = expresion();
 			String temp1 = ((RestaContext)_localctx).expresion.value;
-			setState(176);
+			setState(257);
 			match(RESTA);
-			setState(177);
+			setState(258);
 			((RestaContext)_localctx).expresion = expresion();
 			 String temp2 = ((RestaContext)_localctx).expresion.value;
-			setState(179);
+			setState(260);
 			match(PAR_CIERRA);
-			setState(180);
+			setState(261);
 			match(SEMICOLON);
 
 			            assembler += "\n ;restar "+temp1+"-"+temp2;
@@ -1187,27 +1518,27 @@ public class mafeParser extends Parser {
 
 	public final MultiplicacionContext multiplicacion() throws RecognitionException {
 		MultiplicacionContext _localctx = new MultiplicacionContext(_ctx, getState());
-		enterRule(_localctx, 24, RULE_multiplicacion);
+		enterRule(_localctx, 28, RULE_multiplicacion);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(183);
+			setState(264);
 			((MultiplicacionContext)_localctx).ID = match(ID);
-			setState(184);
+			setState(265);
 			match(ASIGNAR);
-			setState(185);
+			setState(266);
 			match(PAR_ABRE);
-			setState(186);
+			setState(267);
 			((MultiplicacionContext)_localctx).expresion = expresion();
 			String temp1 = ((MultiplicacionContext)_localctx).expresion.value;
-			setState(188);
+			setState(269);
 			match(MULT);
-			setState(189);
+			setState(270);
 			((MultiplicacionContext)_localctx).expresion = expresion();
 			 String temp2 = ((MultiplicacionContext)_localctx).expresion.value;
-			setState(191);
+			setState(272);
 			match(PAR_CIERRA);
-			setState(192);
+			setState(273);
 			match(SEMICOLON);
 
 			            assembler += "\n ;multiplicar "+temp1+"*"+temp2;
@@ -1269,27 +1600,27 @@ public class mafeParser extends Parser {
 
 	public final DivisionContext division() throws RecognitionException {
 		DivisionContext _localctx = new DivisionContext(_ctx, getState());
-		enterRule(_localctx, 26, RULE_division);
+		enterRule(_localctx, 30, RULE_division);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(195);
+			setState(276);
 			((DivisionContext)_localctx).ID = match(ID);
-			setState(196);
+			setState(277);
 			match(ASIGNAR);
-			setState(197);
+			setState(278);
 			match(PAR_ABRE);
-			setState(198);
+			setState(279);
 			((DivisionContext)_localctx).expresion = expresion();
 			String temp1 = ((DivisionContext)_localctx).expresion.value;
-			setState(200);
+			setState(281);
 			match(DIVI);
-			setState(201);
+			setState(282);
 			((DivisionContext)_localctx).expresion = expresion();
 			 String temp2 = ((DivisionContext)_localctx).expresion.value;
-			setState(203);
+			setState(284);
 			match(PAR_CIERRA);
-			setState(204);
+			setState(285);
 			match(SEMICOLON);
 
 			            assembler += "\n ;dividir "+temp1+"/"+temp2;
@@ -1324,66 +1655,96 @@ public class mafeParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\33\u00d2\4\2\t\2"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\37\u0123\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
-		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\3\2\3\2\3\2\3\2\7\2#\n\2\f\2"+
-		"\16\2&\13\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3\64\n\3"+
-		"\3\4\3\4\3\4\3\4\5\4:\n\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5"+
-		"\3\5\3\5\3\5\7\5J\n\5\f\5\16\5M\13\5\3\5\3\5\3\5\3\5\3\6\3\6\3\6\3\6\3"+
-		"\6\3\6\7\6Y\n\6\f\6\16\6\\\13\6\3\6\3\6\3\6\3\6\3\6\3\6\7\6d\n\6\f\6\16"+
-		"\6g\13\6\3\6\3\6\3\6\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3"+
-		"\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\5\7\u0087\n"+
-		"\7\3\b\3\b\3\b\3\b\3\b\3\t\3\t\3\t\3\t\3\t\3\t\3\n\3\n\3\n\3\n\3\n\3\n"+
-		"\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3"+
-		"\f\3\f\3\f\3\f\3\f\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\16"+
-		"\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\17\3\17\3\17"+
-		"\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\2\2\20\2\4\6\b\n\f"+
-		"\16\20\22\24\26\30\32\34\2\2\2\u00d3\2\36\3\2\2\2\4\63\3\2\2\2\69\3\2"+
-		"\2\2\b;\3\2\2\2\nR\3\2\2\2\f\u0086\3\2\2\2\16\u0088\3\2\2\2\20\u008d\3"+
-		"\2\2\2\22\u0093\3\2\2\2\24\u0099\3\2\2\2\26\u00a1\3\2\2\2\30\u00ad\3\2"+
-		"\2\2\32\u00b9\3\2\2\2\34\u00c5\3\2\2\2\36\37\7\3\2\2\37 \7\31\2\2 $\7"+
-		"\24\2\2!#\5\4\3\2\"!\3\2\2\2#&\3\2\2\2$\"\3\2\2\2$%\3\2\2\2%\'\3\2\2\2"+
-		"&$\3\2\2\2\'(\7\25\2\2(\3\3\2\2\2)\64\5\16\b\2*\64\5\20\t\2+\64\5\22\n"+
-		"\2,\64\5\24\13\2-\64\5\26\f\2.\64\5\30\r\2/\64\5\32\16\2\60\64\5\34\17"+
-		"\2\61\64\5\n\6\2\62\64\5\b\5\2\63)\3\2\2\2\63*\3\2\2\2\63+\3\2\2\2\63"+
-		",\3\2\2\2\63-\3\2\2\2\63.\3\2\2\2\63/\3\2\2\2\63\60\3\2\2\2\63\61\3\2"+
-		"\2\2\63\62\3\2\2\2\64\5\3\2\2\2\65\66\7\32\2\2\66:\b\4\1\2\678\7\31\2"+
-		"\28:\b\4\1\29\65\3\2\2\29\67\3\2\2\2:\7\3\2\2\2;<\7\17\2\2<=\7\26\2\2"+
-		"=>\5\6\4\2>?\b\5\1\2?@\7\30\2\2@A\5\6\4\2AB\b\5\1\2BC\7\30\2\2CD\5\6\4"+
-		"\2DE\b\5\1\2EF\7\27\2\2FG\7\24\2\2GK\b\5\1\2HJ\5\4\3\2IH\3\2\2\2JM\3\2"+
-		"\2\2KI\3\2\2\2KL\3\2\2\2LN\3\2\2\2MK\3\2\2\2NO\b\5\1\2OP\7\25\2\2PQ\b"+
-		"\5\1\2Q\t\3\2\2\2RS\7\r\2\2ST\b\6\1\2TU\5\f\7\2UV\b\6\1\2VZ\7\24\2\2W"+
-		"Y\5\4\3\2XW\3\2\2\2Y\\\3\2\2\2ZX\3\2\2\2Z[\3\2\2\2[]\3\2\2\2\\Z\3\2\2"+
-		"\2]^\7\25\2\2^_\b\6\1\2_`\7\16\2\2`a\b\6\1\2ae\7\24\2\2bd\5\4\3\2cb\3"+
-		"\2\2\2dg\3\2\2\2ec\3\2\2\2ef\3\2\2\2fh\3\2\2\2ge\3\2\2\2hi\7\25\2\2ij"+
-		"\b\6\1\2j\13\3\2\2\2kl\7\26\2\2lm\5\6\4\2mn\b\7\1\2no\7\20\2\2op\5\6\4"+
-		"\2pq\b\7\1\2qr\7\27\2\2rs\b\7\1\2s\u0087\3\2\2\2tu\7\26\2\2uv\5\6\4\2"+
-		"vw\b\7\1\2wx\7\21\2\2xy\5\6\4\2yz\b\7\1\2z{\7\27\2\2{|\b\7\1\2|\u0087"+
-		"\3\2\2\2}~\7\26\2\2~\177\5\6\4\2\177\u0080\b\7\1\2\u0080\u0081\7\22\2"+
-		"\2\u0081\u0082\5\6\4\2\u0082\u0083\b\7\1\2\u0083\u0084\7\27\2\2\u0084"+
-		"\u0085\b\7\1\2\u0085\u0087\3\2\2\2\u0086k\3\2\2\2\u0086t\3\2\2\2\u0086"+
-		"}\3\2\2\2\u0087\r\3\2\2\2\u0088\u0089\7\4\2\2\u0089\u008a\7\31\2\2\u008a"+
-		"\u008b\7\30\2\2\u008b\u008c\b\b\1\2\u008c\17\3\2\2\2\u008d\u008e\7\5\2"+
-		"\2\u008e\u008f\7\31\2\2\u008f\u0090\7\32\2\2\u0090\u0091\7\30\2\2\u0091"+
-		"\u0092\b\t\1\2\u0092\21\3\2\2\2\u0093\u0094\7\31\2\2\u0094\u0095\7\23"+
-		"\2\2\u0095\u0096\7\32\2\2\u0096\u0097\7\30\2\2\u0097\u0098\b\n\1\2\u0098"+
-		"\23\3\2\2\2\u0099\u009a\7\31\2\2\u009a\u009b\b\13\1\2\u009b\u009c\7\23"+
-		"\2\2\u009c\u009d\7\31\2\2\u009d\u009e\b\13\1\2\u009e\u009f\7\30\2\2\u009f"+
-		"\u00a0\b\13\1\2\u00a0\25\3\2\2\2\u00a1\u00a2\7\31\2\2\u00a2\u00a3\7\23"+
-		"\2\2\u00a3\u00a4\7\26\2\2\u00a4\u00a5\5\6\4\2\u00a5\u00a6\b\f\1\2\u00a6"+
-		"\u00a7\7\6\2\2\u00a7\u00a8\5\6\4\2\u00a8\u00a9\b\f\1\2\u00a9\u00aa\7\27"+
-		"\2\2\u00aa\u00ab\7\30\2\2\u00ab\u00ac\b\f\1\2\u00ac\27\3\2\2\2\u00ad\u00ae"+
-		"\7\31\2\2\u00ae\u00af\7\23\2\2\u00af\u00b0\7\26\2\2\u00b0\u00b1\5\6\4"+
-		"\2\u00b1\u00b2\b\r\1\2\u00b2\u00b3\7\7\2\2\u00b3\u00b4\5\6\4\2\u00b4\u00b5"+
-		"\b\r\1\2\u00b5\u00b6\7\27\2\2\u00b6\u00b7\7\30\2\2\u00b7\u00b8\b\r\1\2"+
-		"\u00b8\31\3\2\2\2\u00b9\u00ba\7\31\2\2\u00ba\u00bb\7\23\2\2\u00bb\u00bc"+
-		"\7\26\2\2\u00bc\u00bd\5\6\4\2\u00bd\u00be\b\16\1\2\u00be\u00bf\7\b\2\2"+
-		"\u00bf\u00c0\5\6\4\2\u00c0\u00c1\b\16\1\2\u00c1\u00c2\7\27\2\2\u00c2\u00c3"+
-		"\7\30\2\2\u00c3\u00c4\b\16\1\2\u00c4\33\3\2\2\2\u00c5\u00c6\7\31\2\2\u00c6"+
-		"\u00c7\7\23\2\2\u00c7\u00c8\7\26\2\2\u00c8\u00c9\5\6\4\2\u00c9\u00ca\b"+
-		"\17\1\2\u00ca\u00cb\7\t\2\2\u00cb\u00cc\5\6\4\2\u00cc\u00cd\b\17\1\2\u00cd"+
-		"\u00ce\7\27\2\2\u00ce\u00cf\7\30\2\2\u00cf\u00d0\b\17\1\2\u00d0\35\3\2"+
-		"\2\2\t$\639KZe\u0086";
+		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\3\2\3\2"+
+		"\3\2\3\2\7\2\'\n\2\f\2\16\2*\13\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3"+
+		"\3\3\3\3\3\3\3\3\5\39\n\3\3\4\3\4\3\4\3\4\5\4?\n\4\3\5\3\5\3\5\3\5\3\5"+
+		"\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\7\5O\n\5\f\5\16\5R\13\5\3\5\3\5\3"+
+		"\5\3\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\7\6`\n\6\f\6\16\6c\13\6\3\6\3\6"+
+		"\3\6\3\6\3\6\3\6\7\6k\n\6\f\6\16\6n\13\6\3\6\3\6\3\6\3\7\3\7\3\7\3\7\3"+
+		"\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7"+
+		"\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3"+
+		"\7\3\7\3\7\5\7\u009d\n\7\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3"+
+		"\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b"+
+		"\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\5\b\u00c9\n\b\3\t"+
+		"\3\t\3\t\3\t\3\t\3\t\3\t\7\t\u00d2\n\t\f\t\16\t\u00d5\13\t\3\t\3\t\3\t"+
+		"\3\n\3\n\3\n\3\n\3\n\3\13\3\13\3\13\3\13\3\13\3\13\3\f\3\f\3\f\3\f\3\f"+
+		"\3\f\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\16\3\16\3\16\3\16\3\16\3\16\3\16"+
+		"\3\16\3\16\3\16\3\16\3\16\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17"+
+		"\3\17\3\17\3\17\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20"+
+		"\3\20\3\21\3\21\3\21\3\21\3\21\3\21\3\21\3\21\3\21\3\21\3\21\3\21\3\21"+
+		"\2\2\22\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \2\2\2\u012c\2\"\3\2\2"+
+		"\2\48\3\2\2\2\6>\3\2\2\2\b@\3\2\2\2\nW\3\2\2\2\f\u009c\3\2\2\2\16\u00c8"+
+		"\3\2\2\2\20\u00ca\3\2\2\2\22\u00d9\3\2\2\2\24\u00de\3\2\2\2\26\u00e4\3"+
+		"\2\2\2\30\u00ea\3\2\2\2\32\u00f2\3\2\2\2\34\u00fe\3\2\2\2\36\u010a\3\2"+
+		"\2\2 \u0116\3\2\2\2\"#\7\3\2\2#$\7\35\2\2$(\7\30\2\2%\'\5\4\3\2&%\3\2"+
+		"\2\2\'*\3\2\2\2(&\3\2\2\2()\3\2\2\2)+\3\2\2\2*(\3\2\2\2+,\7\31\2\2,\3"+
+		"\3\2\2\2-9\5\22\n\2.9\5\24\13\2/9\5\26\f\2\609\5\30\r\2\619\5\32\16\2"+
+		"\629\5\34\17\2\639\5\36\20\2\649\5 \21\2\659\5\n\6\2\669\5\b\5\2\679\5"+
+		"\20\t\28-\3\2\2\28.\3\2\2\28/\3\2\2\28\60\3\2\2\28\61\3\2\2\28\62\3\2"+
+		"\2\28\63\3\2\2\28\64\3\2\2\28\65\3\2\2\28\66\3\2\2\28\67\3\2\2\29\5\3"+
+		"\2\2\2:;\7\36\2\2;?\b\4\1\2<=\7\35\2\2=?\b\4\1\2>:\3\2\2\2><\3\2\2\2?"+
+		"\7\3\2\2\2@A\7\17\2\2AB\7\32\2\2BC\5\6\4\2CD\b\5\1\2DE\7\34\2\2EF\5\6"+
+		"\4\2FG\b\5\1\2GH\7\34\2\2HI\5\6\4\2IJ\b\5\1\2JK\7\33\2\2KL\7\30\2\2LP"+
+		"\b\5\1\2MO\5\4\3\2NM\3\2\2\2OR\3\2\2\2PN\3\2\2\2PQ\3\2\2\2QS\3\2\2\2R"+
+		"P\3\2\2\2ST\b\5\1\2TU\7\31\2\2UV\b\5\1\2V\t\3\2\2\2WX\7\r\2\2XY\b\6\1"+
+		"\2YZ\7\32\2\2Z[\5\f\7\2[\\\7\33\2\2\\]\b\6\1\2]a\7\30\2\2^`\5\4\3\2_^"+
+		"\3\2\2\2`c\3\2\2\2a_\3\2\2\2ab\3\2\2\2bd\3\2\2\2ca\3\2\2\2de\7\31\2\2"+
+		"ef\b\6\1\2fg\7\16\2\2gh\b\6\1\2hl\7\30\2\2ik\5\4\3\2ji\3\2\2\2kn\3\2\2"+
+		"\2lj\3\2\2\2lm\3\2\2\2mo\3\2\2\2nl\3\2\2\2op\7\31\2\2pq\b\6\1\2q\13\3"+
+		"\2\2\2rs\5\6\4\2st\b\7\1\2tu\7\22\2\2uv\5\6\4\2vw\b\7\1\2wx\b\7\1\2x\u009d"+
+		"\3\2\2\2yz\5\6\4\2z{\b\7\1\2{|\7\24\2\2|}\5\6\4\2}~\b\7\1\2~\177\b\7\1"+
+		"\2\177\u009d\3\2\2\2\u0080\u0081\5\6\4\2\u0081\u0082\b\7\1\2\u0082\u0083"+
+		"\7\23\2\2\u0083\u0084\5\6\4\2\u0084\u0085\b\7\1\2\u0085\u0086\b\7\1\2"+
+		"\u0086\u009d\3\2\2\2\u0087\u0088\5\6\4\2\u0088\u0089\b\7\1\2\u0089\u008a"+
+		"\7\21\2\2\u008a\u008b\5\6\4\2\u008b\u008c\b\7\1\2\u008c\u008d\b\7\1\2"+
+		"\u008d\u009d\3\2\2\2\u008e\u008f\5\6\4\2\u008f\u0090\b\7\1\2\u0090\u0091"+
+		"\7\25\2\2\u0091\u0092\5\6\4\2\u0092\u0093\b\7\1\2\u0093\u0094\b\7\1\2"+
+		"\u0094\u009d\3\2\2\2\u0095\u0096\5\6\4\2\u0096\u0097\b\7\1\2\u0097\u0098"+
+		"\7\26\2\2\u0098\u0099\5\6\4\2\u0099\u009a\b\7\1\2\u009a\u009b\b\7\1\2"+
+		"\u009b\u009d\3\2\2\2\u009cr\3\2\2\2\u009cy\3\2\2\2\u009c\u0080\3\2\2\2"+
+		"\u009c\u0087\3\2\2\2\u009c\u008e\3\2\2\2\u009c\u0095\3\2\2\2\u009d\r\3"+
+		"\2\2\2\u009e\u009f\5\6\4\2\u009f\u00a0\b\b\1\2\u00a0\u00a1\7\22\2\2\u00a1"+
+		"\u00a2\5\6\4\2\u00a2\u00a3\b\b\1\2\u00a3\u00a4\b\b\1\2\u00a4\u00c9\3\2"+
+		"\2\2\u00a5\u00a6\5\6\4\2\u00a6\u00a7\b\b\1\2\u00a7\u00a8\7\24\2\2\u00a8"+
+		"\u00a9\5\6\4\2\u00a9\u00aa\b\b\1\2\u00aa\u00ab\b\b\1\2\u00ab\u00c9\3\2"+
+		"\2\2\u00ac\u00ad\5\6\4\2\u00ad\u00ae\b\b\1\2\u00ae\u00af\7\23\2\2\u00af"+
+		"\u00b0\5\6\4\2\u00b0\u00b1\b\b\1\2\u00b1\u00b2\b\b\1\2\u00b2\u00c9\3\2"+
+		"\2\2\u00b3\u00b4\5\6\4\2\u00b4\u00b5\b\b\1\2\u00b5\u00b6\7\21\2\2\u00b6"+
+		"\u00b7\5\6\4\2\u00b7\u00b8\b\b\1\2\u00b8\u00b9\b\b\1\2\u00b9\u00c9\3\2"+
+		"\2\2\u00ba\u00bb\5\6\4\2\u00bb\u00bc\b\b\1\2\u00bc\u00bd\7\25\2\2\u00bd"+
+		"\u00be\5\6\4\2\u00be\u00bf\b\b\1\2\u00bf\u00c0\b\b\1\2\u00c0\u00c9\3\2"+
+		"\2\2\u00c1\u00c2\5\6\4\2\u00c2\u00c3\b\b\1\2\u00c3\u00c4\7\26\2\2\u00c4"+
+		"\u00c5\5\6\4\2\u00c5\u00c6\b\b\1\2\u00c6\u00c7\b\b\1\2\u00c7\u00c9\3\2"+
+		"\2\2\u00c8\u009e\3\2\2\2\u00c8\u00a5\3\2\2\2\u00c8\u00ac\3\2\2\2\u00c8"+
+		"\u00b3\3\2\2\2\u00c8\u00ba\3\2\2\2\u00c8\u00c1\3\2\2\2\u00c9\17\3\2\2"+
+		"\2\u00ca\u00cb\7\20\2\2\u00cb\u00cc\b\t\1\2\u00cc\u00cd\7\32\2\2\u00cd"+
+		"\u00ce\5\16\b\2\u00ce\u00cf\7\33\2\2\u00cf\u00d3\7\30\2\2\u00d0\u00d2"+
+		"\5\4\3\2\u00d1\u00d0\3\2\2\2\u00d2\u00d5\3\2\2\2\u00d3\u00d1\3\2\2\2\u00d3"+
+		"\u00d4\3\2\2\2\u00d4\u00d6\3\2\2\2\u00d5\u00d3\3\2\2\2\u00d6\u00d7\7\31"+
+		"\2\2\u00d7\u00d8\b\t\1\2\u00d8\21\3\2\2\2\u00d9\u00da\7\4\2\2\u00da\u00db"+
+		"\7\35\2\2\u00db\u00dc\7\34\2\2\u00dc\u00dd\b\n\1\2\u00dd\23\3\2\2\2\u00de"+
+		"\u00df\7\5\2\2\u00df\u00e0\7\35\2\2\u00e0\u00e1\7\36\2\2\u00e1\u00e2\7"+
+		"\34\2\2\u00e2\u00e3\b\13\1\2\u00e3\25\3\2\2\2\u00e4\u00e5\7\35\2\2\u00e5"+
+		"\u00e6\7\27\2\2\u00e6\u00e7\7\36\2\2\u00e7\u00e8\7\34\2\2\u00e8\u00e9"+
+		"\b\f\1\2\u00e9\27\3\2\2\2\u00ea\u00eb\7\35\2\2\u00eb\u00ec\b\r\1\2\u00ec"+
+		"\u00ed\7\27\2\2\u00ed\u00ee\7\35\2\2\u00ee\u00ef\b\r\1\2\u00ef\u00f0\7"+
+		"\34\2\2\u00f0\u00f1\b\r\1\2\u00f1\31\3\2\2\2\u00f2\u00f3\7\35\2\2\u00f3"+
+		"\u00f4\7\27\2\2\u00f4\u00f5\7\32\2\2\u00f5\u00f6\5\6\4\2\u00f6\u00f7\b"+
+		"\16\1\2\u00f7\u00f8\7\6\2\2\u00f8\u00f9\5\6\4\2\u00f9\u00fa\b\16\1\2\u00fa"+
+		"\u00fb\7\33\2\2\u00fb\u00fc\7\34\2\2\u00fc\u00fd\b\16\1\2\u00fd\33\3\2"+
+		"\2\2\u00fe\u00ff\7\35\2\2\u00ff\u0100\7\27\2\2\u0100\u0101\7\32\2\2\u0101"+
+		"\u0102\5\6\4\2\u0102\u0103\b\17\1\2\u0103\u0104\7\7\2\2\u0104\u0105\5"+
+		"\6\4\2\u0105\u0106\b\17\1\2\u0106\u0107\7\33\2\2\u0107\u0108\7\34\2\2"+
+		"\u0108\u0109\b\17\1\2\u0109\35\3\2\2\2\u010a\u010b\7\35\2\2\u010b\u010c"+
+		"\7\27\2\2\u010c\u010d\7\32\2\2\u010d\u010e\5\6\4\2\u010e\u010f\b\20\1"+
+		"\2\u010f\u0110\7\b\2\2\u0110\u0111\5\6\4\2\u0111\u0112\b\20\1\2\u0112"+
+		"\u0113\7\33\2\2\u0113\u0114\7\34\2\2\u0114\u0115\b\20\1\2\u0115\37\3\2"+
+		"\2\2\u0116\u0117\7\35\2\2\u0117\u0118\7\27\2\2\u0118\u0119\7\32\2\2\u0119"+
+		"\u011a\5\6\4\2\u011a\u011b\b\21\1\2\u011b\u011c\7\t\2\2\u011c\u011d\5"+
+		"\6\4\2\u011d\u011e\b\21\1\2\u011e\u011f\7\33\2\2\u011f\u0120\7\34\2\2"+
+		"\u0120\u0121\b\21\1\2\u0121!\3\2\2\2\13(8>Pal\u009c\u00c8\u00d3";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

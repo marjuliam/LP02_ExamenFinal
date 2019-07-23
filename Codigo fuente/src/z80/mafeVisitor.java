@@ -50,6 +50,18 @@ public interface mafeVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSentbooleana(mafeParser.SentbooleanaContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link mafeParser#sentboolenanawhile}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSentboolenanawhile(mafeParser.SentboolenanawhileContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link mafeParser#ciclowhile}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCiclowhile(mafeParser.CiclowhileContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link mafeParser#var_decl}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

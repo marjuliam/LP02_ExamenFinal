@@ -1,5 +1,6 @@
 // Generated from C:/Users/Zylfrox/IdeaProjects/Test\mafe.g4 by ANTLR 4.7.2
 package z80;
+
     import java.util.Map;
     import java.util.HashMap;
 
@@ -56,6 +57,20 @@ public class mafeBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements m
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitSentbooleana(mafeParser.SentbooleanaContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitSentboolenanawhile(mafeParser.SentboolenanawhileContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitCiclowhile(mafeParser.CiclowhileContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
